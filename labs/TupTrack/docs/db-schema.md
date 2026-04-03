@@ -16,7 +16,6 @@ erDiagram
         int group_type FK
         datetime started_at
         datetime ended_at
-        int duration_ms
         boolean is_local
     }
 
@@ -74,6 +73,7 @@ erDiagram
 - In this schema, only one group can be assigned to a recording.
 - Only one note can be assigned to a recording.
 - It will be possible to add a description to an event.
+
 - Wi-Fi, Bluetooth, and other named sensors will be stored as attributes in `SensorType`.
   - TODO: add these attributes.
 - The sampling rate may change while the application is running, for example when it is moved to the background, so the rate is stored in the `Sensor` table rather than in `SensorType`.
