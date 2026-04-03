@@ -9,7 +9,7 @@
     "properties": {
       "action": {
         "type": "string",
-        "enum": ["walk", "turn", "stop", "lifting", "stairs"]
+        "enum": ["walk", "turn", "stop", "elevating", "stairs"]
       }
     },
     "allOf": [
@@ -42,7 +42,7 @@
         }
       },
       {
-        "if": { "properties": { "action": { "const": "lifting" } } },
+        "if": { "properties": { "action": { "const": "elevating" } } },
         "then": {
           "properties": {
             "from": { "type": "integer", "description": "Starting height (integer only)" },
