@@ -1,0 +1,26 @@
+[
+  {
+    "action": "walk",
+    "steps": 25,
+    "duration": 15.5
+  },
+  {
+    "action": "stop",
+    "duration": 5.0
+  },
+  {
+    "action": "lifting",
+    "from": 0,
+    "to": 5,
+    "duration": 4.0
+  },
+  {
+    "action": "turn",
+    "direction": "little right"
+  },
+  {
+    "action": "stairs",
+    "direction": "up",
+    "duration": 12.0
+  }
+]
