@@ -27,7 +27,7 @@
         "if": { "properties": { "action": { "const": "turn" } } },
         "then": {
           "properties": {
-            "direction": { "type": "string", "enum": ["left", "right", "little left", "little right", "around"] }
+            "direction": { "type": "string", "enum": ["left", "right", "little left", "little right"] }
           },
           "required": ["direction"]
         }
