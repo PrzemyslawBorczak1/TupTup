@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TupTrack.Application/TupTrack.Application.csproj" />
+    <Project Path="src/TupTrack.Domain/TupTrack.Domain.csproj" />
+    <Project Path="src/TupTrack.Infrastructure/TupTrack.Infrastructure.csproj" />
+    <Project Path="src/TupTrack.UI/TupTrack.UI.csproj" />
+  </Folder>
+</Solution>
