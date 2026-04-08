@@ -17,8 +17,22 @@
     -->
 
     <ContentPage.Resources>
-        <x:Double x:Key="StopButtonSize">56</x:Double>
-        <x:Int32 x:Key="StopButtonRadius">28</x:Int32>
+        <Color x:Key="SurfaceBrown">#3D3226</Color>
+        <Color x:Key="TextWhite">White</Color>
+
+        <Style x:Key="MatrixButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HeightRequest" Value="62" />
+            <Setter Property="BorderWidth" Value="0" />
+        </Style>
+
+        <Style x:Key="RoomButtonStyle" TargetType="Button" BasedOn="{StaticResource MatrixButtonStyle}">
+            <Setter Property="BackgroundColor" Value="{StaticResource SurfaceBrown}" />
+        </Style>
 
 
     </ContentPage.Resources>
@@ -28,39 +42,90 @@
 
     <Grid
         Padding="24,0,24,0"
-        RowDefinitions="Auto,Auto,Auto,Auto,*,Auto"
+        RowDefinitions="Auto,76,Auto,Auto,*,Auto"
         RowSpacing="18">
 
         <!-- Stop Recording -->
         <Button
             x:Name="StopRecordingButton"
-            Grid.Column="1"
-            WidthRequest="{StaticResource StopButtonSize}"
-            HeightRequest="{StaticResource StopButtonSize}"
-            CornerRadius="{StaticResource StopButtonRadius}"
+            Grid.Row="0"
+            WidthRequest="56"
+            HeightRequest="56"
+            CornerRadius="28"
             BackgroundColor="#FF1919"
             HorizontalOptions="End"
-            Opacity="{Binding IsRecording}" />
+            Opacity="1"
+            Clicked="OnStopRecordingClicked" />
+    
+        <!-- Start Recording Button with info -->
+        <Grid Grid.Row="1" HeightRequest="76">
+            <Button
+                x:Name="StartRecordingButton"
+                Text="Start Recording"
+                HorizontalOptions="Center"
+                WidthRequest="290"
+                HeightRequest="76"
+                CornerRadius="38"
+                FontAttributes="Bold"
+                FontSize="40"
+                TextColor="{StaticResource TextWhite}"
+                BackgroundColor="#31C95E"
+                Clicked="OnStartRecordingClicked" />
 
-        <!-- Start Recording -->
-        <Button
-            x:Name="StartRecordingButton"
-            Grid.Row="1"
-            Text="Start Recording"
-            HorizontalOptions="Center"
-            WidthRequest="290"
-            HeightRequest="76"
-            CornerRadius="38"
-            FontAttributes="Bold"
-            FontSize="40"
-            TextColor="White"
-            BackgroundColor="#31C95E"
-            Clicked="OnStartRecordingClicked" />
-        
-        <components:LabelsBar
-            x:Name="RecordingLabelsBar"
-            WidthRequest="290"
-            BarHeight="8" />
+            <VerticalStackLayout
+                x:Name="RecordingInfoView"
+                IsVisible="False"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Spacing="4"
+                WidthRequest="290">
+                <Label
+                    x:Name="RecordingTimeLabel"
+                    Text="00:00"
+                    FontSize="46"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource TextWhite}"
+                    HorizontalTextAlignment="Center" />
+
+                <components:LabelsBar
+                    x:Name="RecordingTopBar"
+                    BarHeight="3"
+                    HorizontalOptions="Fill" />
+
+                <components:LabelsBar
+                    x:Name="RecordingBottomBar"
+                    BarHeight="3"
+                    HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Border
+            Grid.Row="4"
+            VerticalOptions="End"
+            StrokeThickness="0"
+            BackgroundColor="{StaticResource SurfaceBrown}"
+            Padding="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30" />
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*">
+                <Button Grid.Row="0" Grid.Column="0" Text="Stairs" BackgroundColor="#3968D8" Style="{StaticResource MatrixButtonStyle}" />
+                <Button Grid.Row="0" Grid.Column="1" Text="Flat" BackgroundColor="#D8B73E" Style="{StaticResource MatrixButtonStyle}" />
+                <Button Grid.Row="0" Grid.Column="2" Text="Elevator" BackgroundColor="#D848C7" Style="{StaticResource MatrixButtonStyle}" />
+
+                <Button Grid.Row="1" Grid.Column="0" Text="Turn" BackgroundColor="#FF912A" Style="{StaticResource MatrixButtonStyle}" />
+                <Button Grid.Row="1" Grid.Column="1" Text="Event" BackgroundColor="#888888" Style="{StaticResource MatrixButtonStyle}" />
+                <Button Grid.Row="1" Grid.Column="2" Text="Stop" BackgroundColor="#9CBE63" Style="{StaticResource MatrixButtonStyle}" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Text="Room"
+                    Style="{StaticResource RoomButtonStyle}" />
+            </Grid>
+        </Border>
 
 
     </Grid>   

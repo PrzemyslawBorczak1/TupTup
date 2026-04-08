@@ -2,8 +2,7 @@ using System.Collections.Generic;
 
 namespace TupTrack.UI.Components;
 /// <summary>
-/// It binds to Height and Labels, where Labels is a collection of LabelSegment, which has Value and Color. It builds a bar with segments based on those values and colors.
-/// To Upadate the bar, you can call Refresh() method, which will rebuild the bar based on the current Labels collection. You can also set BarHeight to change the height of the bar.
+/// It binds to Height and lets to add segments with different values and colors. Each segment's width is proportional to its value compared to the total value of all segments. It also has a method to get the last added segment, which can be used for updating the most recent segment's value or color
 /// </summary>
 public partial class LabelsBar : ContentView
 {

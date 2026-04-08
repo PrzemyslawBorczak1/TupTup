@@ -4,35 +4,66 @@ namespace TupTrack.UI;
 
 public partial class MainPage : ContentPage
 {
-    bool isRecording = false;
-    public bool IsRecording
-    {
-        get => isRecording;
-        set
-        {
-            if (isRecording == value) return;
-            isRecording = value;
-            OnPropertyChanged();
-        }
-    }
+    private readonly IDispatcherTimer _recordingTimer;
+    private TimeSpan _recordingElapsed;
 
     public MainPage()
     {
         InitializeComponent();
-        BindingContext = this;
 
-        RecordingLabelsBar.Add(new LabelsBar.LabelSegment { Value = 0.5, Color = Color.FromArgb("#1F5EFF") });
-        RecordingLabelsBar.Add(new LabelsBar.LabelSegment { Value = 0.5, Color = Color.FromArgb("#6A5638") });
-        RecordingLabelsBar.Add(new LabelsBar.LabelSegment { Value = 0.5, Color = Color.FromArgb("#1F5EFF") });
-        RecordingLabelsBar.Add(new LabelsBar.LabelSegment { Value = 0.6767, Color = Color.FromArgb("#D91CC8") });
+        _recordingTimer = Dispatcher.CreateTimer();
+        _recordingTimer.Interval = TimeSpan.FromSeconds(1);
+        _recordingTimer.Tick += OnRecordingTick;
+
+        SeedBars();
     }
 
     private void OnStartRecordingClicked(object? sender, EventArgs e)
     {
-        IsRecording = !IsRecording;
-        var last = RecordingLabelsBar.Last();
-        if (last == null) return;
-        last.Value += 10;
-        RecordingLabelsBar.Refresh();
+        SetRecordingState(true);
+    }
+
+    private void OnStopRecordingClicked(object? sender, EventArgs e)
+    {
+        SetRecordingState(false);
+    }
+
+    private void SetRecordingState(bool isRecording)
+    {
+        StartRecordingButton.IsVisible = !isRecording;
+        RecordingInfoView.IsVisible = isRecording;
+        StopRecordingButton.Opacity = isRecording ? 1 : 0;
+
+        if (isRecording)
+        {
+            _recordingElapsed = TimeSpan.Zero;
+            UpdateRecordingLabel();
+            _recordingTimer.Start();
+            return;
+        }
+
+        _recordingTimer.Stop();
+    }
+
+    private void OnRecordingTick(object? sender, EventArgs e)
+    {
+        _recordingElapsed = _recordingElapsed.Add(TimeSpan.FromSeconds(1));
+        UpdateRecordingLabel();
+    }
+
+    private void UpdateRecordingLabel()
+    {
+        RecordingTimeLabel.Text = _recordingElapsed.ToString(@"mm\:ss");
+    }
+
+    private void SeedBars()
+    {
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#1F5EFF") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 0.7, Color = Color.FromArgb("#6A5638") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#1F5EFF") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 0.7, Color = Color.FromArgb("#6A5638") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#D91CC8") });
+
+        RecordingBottomBar.Add(new LabelsBar.LabelSegment { Value = 5.0, Color = Color.FromArgb("#6A5638") });
     }
 }   
