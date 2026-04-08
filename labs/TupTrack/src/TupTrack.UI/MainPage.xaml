@@ -23,7 +23,7 @@
         <Style x:Key="MatrixButtonStyle" TargetType="Button">
             <Setter Property="TextColor" Value="{StaticResource TextWhite}" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontSize" Value="25" />
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="HeightRequest" Value="62" />
@@ -99,6 +99,8 @@
             </VerticalStackLayout>
         </Grid>
 
+
+        <!-- Buttons Grid -->
         <Border
             Grid.Row="4"
             VerticalOptions="End"
