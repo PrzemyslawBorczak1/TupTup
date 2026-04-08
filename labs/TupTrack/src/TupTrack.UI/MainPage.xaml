@@ -60,8 +60,7 @@
         <components:LabelsBar
             x:Name="RecordingLabelsBar"
             WidthRequest="290"
-            BarHeight="8"
-            Labels="{Binding RecordingLabels}" />
+            BarHeight="8" />
 
 
     </Grid>   

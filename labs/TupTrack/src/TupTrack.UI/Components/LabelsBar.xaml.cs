@@ -1,22 +1,25 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace TupTrack.UI.Components;
-
+/// <summary>
+/// It binds to Height and Labels, where Labels is a collection of LabelSegment, which has Value and Color. It builds a bar with segments based on those values and colors.
+/// To Upadate the bar, you can call Refresh() method, which will rebuild the bar based on the current Labels collection. You can also set BarHeight to change the height of the bar.
+/// </summary>
 public partial class LabelsBar : ContentView
 {
+    private readonly List<LabelSegment> _segments = [];
+
+    public class LabelSegment
+    {
+        public double Value { get; set; }
+        public Color Color { get; set; } = Colors.Gray;
+    }
+
+
     public LabelsBar()
     {
         InitializeComponent();
     }
-
-    // bindable properties from definition
-    public static readonly BindableProperty LabelsProperty =
-        BindableProperty.Create(
-            nameof(Labels),
-            typeof(ObservableCollection<LabelSegment>),
-            typeof(LabelsBar),
-            null,
-            propertyChanged: OnLabelsChanged);
 
     public static readonly BindableProperty BarHeightProperty =
         BindableProperty.Create(
@@ -25,22 +28,21 @@ public partial class LabelsBar : ContentView
             typeof(LabelsBar),
             6.0);
 
-    public ObservableCollection<LabelSegment>? Labels
-    {
-        get => (ObservableCollection<LabelSegment>?)GetValue(LabelsProperty);
-        set => SetValue(LabelsProperty, value);
-    }
-
     public double BarHeight
     {
         get => (double)GetValue(BarHeightProperty);
         set => SetValue(BarHeightProperty, value);
     }
 
-    private static void OnLabelsChanged(BindableObject bindable, object oldValue, object newValue)
+    public void Add(LabelSegment segment)
     {
-        var control = (LabelsBar)bindable;
-        control.RebuildBar();
+        _segments.Add(segment);
+        RebuildBar();
+    }
+
+    public LabelSegment? Last()
+    {
+        return _segments.Count == 0 ? null : _segments[^1];
     }
 
     public void Refresh()
@@ -53,10 +55,10 @@ public partial class LabelsBar : ContentView
         BarGrid.ColumnDefinitions.Clear();
         BarGrid.Children.Clear();
 
-        if (Labels is null || Labels.Count == 0)
+        if (_segments.Count == 0)
             return;
 
-        var validLabels = Labels.Where(label => label.Value > 0).ToList();
+        var validLabels = _segments.Where(label => label.Value > 0).ToList();
         if (validLabels.Count == 0)
             return;
 
@@ -86,9 +88,5 @@ public partial class LabelsBar : ContentView
         }
     }
 
-    public class LabelSegment
-    {
-        public double Value { get; set; }
-        public Color Color { get; set; } = Colors.Gray;
-    }
+  
 }
