@@ -1,23 +1,43 @@
-﻿namespace TupTrack.UI;
+﻿using System.Collections.ObjectModel;
+using TupTrack.UI.Components;
+
+namespace TupTrack.UI;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    bool isRecording = false;
+    public bool IsRecording
+    {
+        get => isRecording;
+        set
+        {
+            if (isRecording == value) return;
+            isRecording = value;
+            OnPropertyChanged();
+        }
+    }
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public ObservableCollection<LabelsBar.LabelSegment> RecordingLabels { get; } = new()
+{
+    new() { Value = 0.5, Color = Color.FromArgb("#1F5EFF") },
+    new() { Value = 0.5, Color = Color.FromArgb("#6A5638") },
+    new() { Value = 0.5, Color = Color.FromArgb("#1F5EFF") },
+    new() { Value = 0.6767, Color = Color.FromArgb("#D91CC8") }
+};
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    public MainPage()
+    {
+        InitializeComponent();
+        BindingContext = this;
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
-}
+    private void OnStartRecordingClicked(object? sender, EventArgs e)
+    {
+        IsRecording = !IsRecording;
+        var last = RecordingLabelsBar.Labels.LastOrDefault();
+        if (last == null) return;
+        last.Value += 10;
+        RecordingLabelsBar.Refresh();
+    }
+}   

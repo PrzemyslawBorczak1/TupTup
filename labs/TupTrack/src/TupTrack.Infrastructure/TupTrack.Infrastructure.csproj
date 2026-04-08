@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\TupTrack.Application\TupTrack.Application.csproj" />
+    <ProjectReference Include="..\TupTrack.Application\TupTrack.UseCases.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
