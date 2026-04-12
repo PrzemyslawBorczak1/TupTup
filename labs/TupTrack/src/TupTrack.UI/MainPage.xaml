@@ -101,12 +101,13 @@
 
 
         <!-- Buttons Grid -->
+    
         <Border
-            Grid.Row="4"
-            VerticalOptions="End"
-            StrokeThickness="0"
-            BackgroundColor="{StaticResource SurfaceBrown}"
-            Padding="0">
+             Grid.Row="2"
+             VerticalOptions="End"
+             StrokeThickness="0"
+             BackgroundColor="{StaticResource SurfaceBrown}"
+             Padding="0">   
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="30" />
             </Border.StrokeShape>
@@ -121,11 +122,29 @@
                 <Button Grid.Row="1" Grid.Column="2" Text="Stop" BackgroundColor="#9CBE63" Style="{StaticResource MatrixButtonStyle}" />
 
                 <Button
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Text="Room"
-                    Style="{StaticResource RoomButtonStyle}" />
+             Grid.Row="2"
+             Grid.Column="0"
+             Grid.ColumnSpan="3"
+             Text="Room"
+             Style="{StaticResource RoomButtonStyle}" />
+            </Grid>
+        </Border>
+
+
+        <Border
+            Grid.Row="3"
+            VerticalOptions="End"
+            StrokeThickness="0"
+            BackgroundColor="{StaticResource SurfaceBrown}"
+            Padding="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30" />
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+                <Button Grid.Row="0" Grid.Column="0" Text="Note" BackgroundColor="#3968D8" Style="{StaticResource MatrixButtonStyle}" />
+                <Button Grid.Row="0" Grid.Column="1" Text="Group" BackgroundColor="#D8B73E" Style="{StaticResource MatrixButtonStyle}" />
+
             </Grid>
         </Border>
 

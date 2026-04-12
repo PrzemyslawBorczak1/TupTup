@@ -7,9 +7,8 @@ erDiagram
     RECORDING ||--o| NOTE : has
     RECORDING }o--|| RECORDING_GROUP : is
     LABEL_TYPE ||--o{ TIMESTAMP_LABEL : classifies
-    RECORDING ||--o{ SENSOR : has
-    SENSOR_TYPE ||--o{ SENSOR : typed_as
-    SENSOR ||--o{ SENSOR_READING : produces
+    RECORDING ||--o{ SENSOR_READING : has
+    SENSOR_TYPE ||--o{ SENSOR_READING : typed_as
 
     RECORDING {
         int id PK
@@ -20,12 +19,6 @@ erDiagram
         boolean is_local
     }
 
-    SENSOR {
-        bigint id PK
-        int recording_id FK
-        int sensor_type_id FK
-        float sample_rate_hz
-    }
 
     SENSOR_TYPE {
         int id PK
@@ -39,7 +32,6 @@ erDiagram
         bigint id PK
         bigint sensor_id FK
         datetime timestamp
-        int offset_ms
         float val
     }
 
