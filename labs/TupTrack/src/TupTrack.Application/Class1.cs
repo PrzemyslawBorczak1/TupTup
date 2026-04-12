@@ -1,4 +1,4 @@
-﻿namespace TupTrack.Application;
+﻿namespace TupTrack.UseCases;
 
 public class Class1
 {

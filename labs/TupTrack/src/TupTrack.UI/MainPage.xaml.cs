@@ -1,23 +1,69 @@
-﻿namespace TupTrack.UI;
+﻿using TupTrack.UI.Components;
+
+namespace TupTrack.UI;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly IDispatcherTimer _recordingTimer;
+    private TimeSpan _recordingElapsed;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+        _recordingTimer = Dispatcher.CreateTimer();
+        _recordingTimer.Interval = TimeSpan.FromSeconds(1);
+        _recordingTimer.Tick += OnRecordingTick;
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        SeedBars();
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
-}
+    private void OnStartRecordingClicked(object? sender, EventArgs e)
+    {
+        SetRecordingState(true);
+    }
+
+    private void OnStopRecordingClicked(object? sender, EventArgs e)
+    {
+        SetRecordingState(false);
+    }
+
+    private void SetRecordingState(bool isRecording)
+    {
+        StartRecordingButton.IsVisible = !isRecording;
+        RecordingInfoView.IsVisible = isRecording;
+        StopRecordingButton.Opacity = isRecording ? 1 : 0;
+
+        if (isRecording)
+        {
+            _recordingElapsed = TimeSpan.Zero;
+            UpdateRecordingLabel();
+            _recordingTimer.Start();
+            return;
+        }
+
+        _recordingTimer.Stop();
+    }
+
+    private void OnRecordingTick(object? sender, EventArgs e)
+    {
+        _recordingElapsed = _recordingElapsed.Add(TimeSpan.FromSeconds(1));
+        UpdateRecordingLabel();
+    }
+
+    private void UpdateRecordingLabel()
+    {
+        RecordingTimeLabel.Text = _recordingElapsed.ToString(@"mm\:ss");
+    }
+
+    private void SeedBars()
+    {
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#1F5EFF") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 0.7, Color = Color.FromArgb("#6A5638") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#1F5EFF") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 0.7, Color = Color.FromArgb("#6A5638") });
+        RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#D91CC8") });
+
+        RecordingBottomBar.Add(new LabelsBar.LabelSegment { Value = 5.0, Color = Color.FromArgb("#6A5638") });
+    }
+}   
