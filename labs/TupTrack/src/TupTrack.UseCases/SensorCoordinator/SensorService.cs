@@ -84,9 +84,11 @@ namespace TupTrack.SensorServices
 
         protected void Clear()
         {
-
-            Array.Clear(_tables, INITIALIZED_AMOUNT, activeTable + 1);
-
+            if (activeTable >= INITIALIZED_AMOUNT)
+            {
+                var tablesToClear = activeTable - INITIALIZED_AMOUNT + 1;
+                Array.Clear(_tables, INITIALIZED_AMOUNT, tablesToClear);
+            }
             activeTable = 0;
             activeTableIndex = 0;
 
