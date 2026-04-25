@@ -9,7 +9,7 @@ To store real-world sensor readings for later analysis.
 ## Preconditions
 - The application is running.
 - Device sensors are available.
-- The system is activly recording
+- The system is actively recording
 
 ## Main Scenario
 1. The user stops recording
