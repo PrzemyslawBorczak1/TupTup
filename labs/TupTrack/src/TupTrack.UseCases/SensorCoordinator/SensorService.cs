@@ -91,6 +91,8 @@ namespace TupTrack.SensorServices
             }
             activeTable = 0;
             activeTableIndex = 0;
+            firstInitializedReached = false;
+            overflow = false;
 
         }
 
