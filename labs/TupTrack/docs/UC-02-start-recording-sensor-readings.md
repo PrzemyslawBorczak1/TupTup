@@ -1,4 +1,4 @@
-# UC-01 User can start recording sensor data
+# UC-02 User can start recording sensor readings
 
 ## Description
 This is the main purpose of the application.
