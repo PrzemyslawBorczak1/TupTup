@@ -19,7 +19,7 @@ namespace TupTrack.SensorServices
 
 
         private bool firstInitializedReached = false;
-        public bool overflow = false;
+        public bool Overflow { get; private set; } = false;
 
         public int Size
         {
@@ -48,7 +48,7 @@ namespace TupTrack.SensorServices
             var time = DateTime.Now;
             lock (this)
             {
-                if (overflow)
+                if (Overflow)
                     return;
 
                 _tables[activeTable][activeTableIndex] = (val, time);
@@ -64,7 +64,7 @@ namespace TupTrack.SensorServices
         {
             if (activeTable == TABLES_AMOUNT - 1 && activeTableIndex == TABLE_SIZE)
             {
-                overflow = true;
+                Overflow = true;
                 return;
             }
 

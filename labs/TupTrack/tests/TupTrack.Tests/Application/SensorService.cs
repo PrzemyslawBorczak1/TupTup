@@ -33,7 +33,7 @@ namespace TupTrack.Tests.Application
 
             sut.AddValue(5);
 
-            Assert.True(sut.overflow);
+            Assert.True(sut.Overflow);
             Assert.Equal(4, countAfterFill);
             Assert.Equal(4, sut.Size);
             Assert.Equal(new[] { 1, 2, 3, 4 }, sut.Select(x => x.Item1).ToArray());
@@ -52,7 +52,7 @@ namespace TupTrack.Tests.Application
 
             Assert.Equal(3, sut.Size);
             Assert.Equal(new[] { 11, 22, 33 }, values);
-            Assert.False(sut.overflow);
+            Assert.False(sut.Overflow);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace TupTrack.Tests.Application
             var sut = new TestSensorService();
 
             Assert.Equal(0, sut.Size);
-            Assert.False(sut.overflow);
+            Assert.False(sut.Overflow);
             Assert.Empty(sut);
         }
 
@@ -103,7 +103,7 @@ namespace TupTrack.Tests.Application
             var countAfterFill = sut.Size;
             sut.AddValue(999);
 
-            Assert.True(sut.overflow);
+            Assert.True(sut.Overflow);
             Assert.Equal(capacity, countAfterFill);
             Assert.Equal(capacity, sut.Size);
         }
@@ -123,7 +123,7 @@ namespace TupTrack.Tests.Application
             }
 
             Assert.Equal(n, sut.Size);
-            Assert.False(sut.overflow);
+            Assert.False(sut.Overflow);
         }
 
         [Theory]
