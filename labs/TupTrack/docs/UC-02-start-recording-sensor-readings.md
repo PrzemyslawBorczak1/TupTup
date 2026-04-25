@@ -23,4 +23,4 @@ To store real-world sensor readings for later analysis.
 - System is recording state
 
 ## Notes
-- Probaly workig in the background dont need to be treated diffrently
+- Probably works in the background and does not need to be treated differently.
