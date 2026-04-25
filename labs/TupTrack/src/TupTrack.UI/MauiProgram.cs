@@ -26,7 +26,7 @@ public static class MauiProgram
 #endif
 
 		builder.Services.AddSingleton<ISensorService, BarometerService>();
-        builder.Services.AddSingleton<ISensorService, AccelerometrService>();
+        builder.Services.AddSingleton<ISensorService, AccelerometerService>();
 
 		builder.Services.AddSingleton<ISensorCoordinator, SensorCoordinator>();
 

@@ -6,6 +6,9 @@ namespace TupTrack.SensorServices;
 public class BarometerService: SensorService<double>, ISensorService
 {
     private SensorSpeed _sensorSpeed = SensorSpeed.Fastest;
+
+    private bool isRecording = false;
+
     public SensorSpeed SensorSpeed
     {
         get => _sensorSpeed;
@@ -29,14 +32,14 @@ public class BarometerService: SensorService<double>, ISensorService
 
     public void Start()
     {
+        if (isRecording)
+            return;
+
         Clear();
-
-        if (Barometer.IsMonitoring)
-            throw new InvalidOperationException("Sensor Already Running");
-
 
         Barometer.ReadingChanged += Handler;
         Barometer.Start(_sensorSpeed);
+        isRecording = true;
     }
 
     private void Handler(object? sender, BarometerChangedEventArgs arg)

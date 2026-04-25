@@ -10,19 +10,28 @@ namespace TupTrack.UseCases.SensorCoordinator
 
         public SensorCoordinator(IEnumerable<ISensorService> services)
         {
-            _services = services;
-
+            _services = services.Where(s => s.IsSupported());
         }
-        public void Check()
+      
+
+        public void Start() { 
+            foreach(var service in _services)
+                service.Start();
+            
+        }
+
+        public void Stop() { 
+            foreach(var service in _services)
+                service.Stop();
+            
+        }
+
+        public void Dispose()
         {
-            foreach(var s in _services)
+            foreach(var service in _services)
             {
-               
+                service.Dispose();
             }
         }
-
-        public void Start() { throw new NotImplementedException(); }
-        public void Stop() { throw new NotImplementedException(); }
-        public void Clear() { throw new NotImplementedException(); }
     }
 }
