@@ -17,8 +17,7 @@ namespace TupTrack.UseCases.SensorCoordinator
         {
             foreach(var s in _services)
             {
-                s.Log();
-                int a = s.GetVal();
+               
             }
         }
 

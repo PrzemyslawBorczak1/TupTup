@@ -3,14 +3,60 @@
 
 namespace TupTrack.SensorServices;
 
-public class BarometerService : ISensorService
+public class BarometerService: SensorService<double>, ISensorService
 {
-
-    public void Log()
+    private SensorSpeed _sensorSpeed = SensorSpeed.Fastest;
+    public SensorSpeed SensorSpeed
     {
-        System.Diagnostics.Debug.WriteLine("Barometer service started");
+        get => _sensorSpeed;
+        set {
+
+            if (_sensorSpeed == value)
+                return;
+
+            _sensorSpeed = value;
+            if (Barometer.IsMonitoring)
+            {
+                Barometer.Stop();
+                Barometer.Start(_sensorSpeed);
+            }
+        }
+
+    }
+    public BarometerService() : base() { }
+
+    public bool IsSupported() => Barometer.IsSupported;
+
+    public void Start()
+    {
+        Clear();
+
+        if (Barometer.IsMonitoring)
+            throw new InvalidOperationException("Sensor Already Running");
+
+
+        Barometer.ReadingChanged += Handler;
+        Barometer.Start(_sensorSpeed);
+    }
+
+    private void Handler(object? sender, BarometerChangedEventArgs arg)
+    {
+        Add(arg.Reading.PressureInHectopascals);
+    }
+
+    public void Stop()
+    {
+        Barometer.Stop();
+        Barometer.ReadingChanged -= Handler;
     }
 
 
-    public int GetVal() => 1;
+
+    public void Dispose()
+    {
+        Stop();
+        Clear();
+    }
+
+
 }

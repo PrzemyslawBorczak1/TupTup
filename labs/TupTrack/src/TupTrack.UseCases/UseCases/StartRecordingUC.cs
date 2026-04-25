@@ -13,5 +13,5 @@ public class StartRecordingUC : IStartRecordingUC
 
     public void StartRecording() {
         _sensorCoordinator.Check();
-        }
+    }
 }

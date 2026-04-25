@@ -4,10 +4,12 @@ using System.Text;
 
 namespace TupTrack.UseCases.SensorCoordinator
 {
-    public interface ISensorService
+    public interface ISensorService : IDisposable
     {
-        void Log();
+        void Start();
+        void Stop();
 
-        int GetVal();
+        bool IsSupported();
+
     }
 }

@@ -8,4 +8,7 @@
     </Project>
     <Project Path="src/TupTrack.UseCases/TupTrack.UseCases.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TupTrack.Tests/TupTrack.Tests.csproj" />
+  </Folder>
 </Solution>

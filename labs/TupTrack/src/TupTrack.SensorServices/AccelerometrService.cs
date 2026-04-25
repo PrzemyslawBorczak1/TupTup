@@ -2,16 +2,29 @@
 
 namespace TupTrack.SensorServices
 {
-    public class AccelerometrService : ISensorService
+    public class AccelerometrService : SensorService<decimal>, ISensorService
     {
-        public void Log()
+        public AccelerometrService() : base() { }
+        public bool IsSupported()
         {
-            System.Diagnostics.Debug.WriteLine("Accelerometr service started");
+            throw new NotImplementedException();
         }
 
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Stop()
+        {
+            throw new NotImplementedException();
+        }
 
-        public int GetVal() => 2;
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
     }
     
 }
