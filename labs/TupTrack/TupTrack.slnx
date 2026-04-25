@@ -3,6 +3,7 @@
     <Project Path="src/TupTrack.Application/TupTrack.UseCases.csproj" />
     <Project Path="src/TupTrack.Domain/TupTrack.Domain.csproj" />
     <Project Path="src/TupTrack.Infrastructure/TupTrack.Infrastructure.csproj" />
+    <Project Path="src/TupTrack.SensorServices/TupTrack.SensorServices.csproj" />
     <Project Path="src/TupTrack.UI/TupTrack.UI.csproj">
       <Deploy Solution="Debug|*" />
     </Project>

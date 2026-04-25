@@ -65,5 +65,12 @@ public partial class MainPage : ContentPage
         RecordingTopBar.Add(new LabelsBar.LabelSegment { Value = 1.2, Color = Color.FromArgb("#D91CC8") });
 
         RecordingBottomBar.Add(new LabelsBar.LabelSegment { Value = 5.0, Color = Color.FromArgb("#6A5638") });
+
     }
+
+    private void AddBarometer()
+    {
+    }
+
+
 }   
