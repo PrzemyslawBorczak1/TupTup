@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TupTrack.UseCases.SensorCoordinator
 {
     public class SensorCoordinator : ISensorCoordinator
     {
-        IEnumerable<ISensorService> _services;
+        private readonly List<ISensorService> _services;
 
         public SensorCoordinator(IEnumerable<ISensorService> services)
         {
-            _services = services.Where(s => s.IsSupported());
+            _services = services.Where(s => s.IsSupported()).ToList();
         }
       
 
