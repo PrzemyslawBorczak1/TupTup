@@ -1,4 +1,5 @@
 ﻿using TupTrack.UI.Components;
+using UC = TupTrack.UseCases;
 
 namespace TupTrack.UI;
 
@@ -6,10 +7,14 @@ public partial class MainPage : ContentPage
 {
     private readonly IDispatcherTimer _recordingTimer;
     private TimeSpan _recordingElapsed;
+    UC.IApplication _app;
 
-    public MainPage()
+    public MainPage(UC.IApplication app)
     {
+        
         InitializeComponent();
+
+        _app = app;
 
         _recordingTimer = Dispatcher.CreateTimer();
         _recordingTimer.Interval = TimeSpan.FromSeconds(1);
@@ -20,6 +25,7 @@ public partial class MainPage : ContentPage
 
     private void OnStartRecordingClicked(object? sender, EventArgs e)
     {
+        _app.StartRecording();
         SetRecordingState(true);
     }
 
@@ -68,9 +74,6 @@ public partial class MainPage : ContentPage
 
     }
 
-    private void AddBarometer()
-    {
-    }
-
+  
 
 }   
