@@ -1,12 +1,11 @@
-﻿using TupTrack.UseCases.Interfaces;
-
+﻿
 
 namespace TupTrack.UseCases
 {
-    public class Application : IApplication
+    public class Application 
     {
-        IStartRecordingUC _startRecording;
-        public Application(IStartRecordingUC sr)
+        StartRecordingUC _startRecording;
+        public Application(StartRecordingUC sr)
         {
             _startRecording = sr;
         }

@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using TupTrack.Infrastructure;
 using TupTrack.SensorServices;
-using TupTrack.UseCases.Interfaces;
-using TupTrack.UseCases.SensorCoordinator;
 using TupTrack.UseCases;
-
+using TupTrack.UseCases.SensorCoordinator;
 using UC = TupTrack.UseCases;
 
 namespace TupTrack.UI;
@@ -24,18 +23,27 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+        SQLitePCL.Batteries_V2.Init();
 
-		builder.Services.AddSingleton<ISensorService, BarometerService>();
+        var databasePath = Path.Combine(
+            FileSystem.AppDataDirectory,
+            "tuptrack.db3");
+
+        builder.Services.AddSingleton(new AppDatabase(databasePath));
+
+
+
+        builder.Services.AddSingleton<ISensorService, BarometerService>();
         builder.Services.AddSingleton<ISensorService, AccelerometerService>();
 
 		builder.Services.AddSingleton<ISensorCoordinator, SensorCoordinator>();
 
 
 
-        builder.Services.AddSingleton<IStartRecordingUC, StartRecordingUC>();
+        builder.Services.AddSingleton<StartRecordingUC>();
 
+        builder.Services.AddSingleton<UC.Application>();
 
-        builder.Services.AddSingleton<UC.IApplication, UC.Application>();
 
 
         return builder.Build();

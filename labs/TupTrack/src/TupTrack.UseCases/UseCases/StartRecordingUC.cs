@@ -1,9 +1,8 @@
 ﻿using TupTrack.UseCases.SensorCoordinator;
-using TupTrack.UseCases.Interfaces;
 
 namespace TupTrack.UseCases;
 
-public class StartRecordingUC : IStartRecordingUC
+public class StartRecordingUC
 {
     ISensorCoordinator _sensorCoordinator;
     public StartRecordingUC(ISensorCoordinator sensorCoordinator)

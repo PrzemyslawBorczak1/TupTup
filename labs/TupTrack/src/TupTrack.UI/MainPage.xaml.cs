@@ -1,4 +1,6 @@
-﻿using TupTrack.UI.Components;
+﻿using TupTrack.Infrastructure;
+using TupTrack.UI.Components;
+using TupTrack.UseCases;
 using UC = TupTrack.UseCases;
 
 namespace TupTrack.UI;
@@ -7,9 +9,9 @@ public partial class MainPage : ContentPage
 {
     private readonly IDispatcherTimer _recordingTimer;
     private TimeSpan _recordingElapsed;
-    UC.IApplication _app;
+    UC.Application _app;
 
-    public MainPage(UC.IApplication app)
+    public MainPage(UC.Application app)
     {
         
         InitializeComponent();
@@ -23,9 +25,26 @@ public partial class MainPage : ContentPage
         SeedBars();
     }
 
-    private void OnStartRecordingClicked(object? sender, EventArgs e)
+    private async void OnStartRecordingClicked(object? sender, EventArgs e)
     {
         _app.StartRecording();
+
+        var databasePath = Path.Combine(
+            FileSystem.AppDataDirectory,
+            "tuptrack.db3");
+        var test = new AppDatabase(databasePath);
+        try
+        {
+            var rc = new Infrastructure.Records.ExampleRecord();
+            rc.Id = Guid.NewGuid();
+            await test.Save(rc);
+        }
+        catch (Exception)
+        { }
+        var a = await test.Get();
+
+
+
         SetRecordingState(true);
     }
 
