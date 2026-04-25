@@ -49,8 +49,12 @@ namespace TupTrack.SensorServices
         public void Stop()
         {
 
+            if (!isRecording)
+                return;
+
             Accelerometer.Stop();
             Accelerometer.ReadingChanged -= Handler;
+            isRecording = false;
         }
 
         public void Dispose()
