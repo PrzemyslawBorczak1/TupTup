@@ -49,8 +49,12 @@ public class BarometerService: SensorService<double>, ISensorService
 
     public void Stop()
     {
+        if (!isRecording)
+            return;
+
         Barometer.Stop();
         Barometer.ReadingChanged -= Handler;
+        isRecording = false;
     }
 
 
