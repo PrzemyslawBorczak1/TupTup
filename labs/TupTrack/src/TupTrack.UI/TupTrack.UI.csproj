@@ -71,8 +71,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\TupTrack.Application\TupTrack.UseCases.csproj" />
+	  <ProjectReference Include="..\TupTrack.UseCases\TupTrack.UseCases.csproj" />
 	  <ProjectReference Include="..\TupTrack.Infrastructure\TupTrack.Infrastructure.csproj" />
+	  <ProjectReference Include="..\TupTrack.SensorServices\TupTrack.SensorServices.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

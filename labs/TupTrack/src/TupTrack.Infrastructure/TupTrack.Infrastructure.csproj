@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+
+
   <ItemGroup>
-    <ProjectReference Include="..\TupTrack.Application\TupTrack.UseCases.csproj" />
+	  <PackageReference Include="sqlite-net-base" Version="1.9.172" />
+	  <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
   </ItemGroup>
 
   <PropertyGroup>
