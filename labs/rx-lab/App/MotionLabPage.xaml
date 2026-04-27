@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.MotionLabPage"
+             Title="Motion Lab"
+             >
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="16">
+            
+            
+            <!-- TIME -->
+            <Label Text="Live Time" FontAttributes="Bold"/>
+
+            <Label
+                FontFamily="Monospace"
+                FontSize="14"
+                Text="{Binding TickIndex, StringFormat='  Tick: {0} (1 Hz)'}" />
+
+            <!-- EVENTS -->
+            <Label Text="Live Events" FontAttributes="Bold"/>
+            
+            <!-- TURNS -->
+            <Label Text="Turns" FontAttributes="Bold"/>
+
+            <Label
+                FontFamily="Monospace"
+                FontSize="14"
+                Text="{Binding TurnsText}" />
+
+            <Label
+                FontFamily="Monospace"
+                FontSize="14"
+                Text="{Binding EventsText}" />
+
+            
+
+          
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
