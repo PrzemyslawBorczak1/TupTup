@@ -2,6 +2,7 @@
 using TupTrack.UI.Components;
 using TupTrack.UseCases;
 using UC = TupTrack.UseCases;
+using TupTrack.UI.ViewModels;
 
 namespace TupTrack.UI;
 
@@ -15,6 +16,7 @@ public partial class MainPage : ContentPage
     {
         
         InitializeComponent();
+        BindingContext = new MainPageViewModel();
 
         _app = app;
 

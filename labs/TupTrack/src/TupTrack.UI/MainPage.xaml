@@ -101,35 +101,7 @@
 
 
         <!-- Buttons Grid -->
-    
-        <Border
-             Grid.Row="2"
-             VerticalOptions="End"
-             StrokeThickness="0"
-             BackgroundColor="{StaticResource SurfaceBrown}"
-             Padding="0">   
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="30" />
-            </Border.StrokeShape>
-
-            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*">
-                <Button Grid.Row="0" Grid.Column="0" Text="Stairs" BackgroundColor="#3968D8" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="1" Text="Flat" BackgroundColor="#D8B73E" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="2" Text="Elevator" BackgroundColor="#D848C7" Style="{StaticResource MatrixButtonStyle}" />
-
-                <Button Grid.Row="1" Grid.Column="0" Text="Turn" BackgroundColor="#FF912A" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="1" Grid.Column="1" Text="Event" BackgroundColor="#888888" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="1" Grid.Column="2" Text="Stop" BackgroundColor="#9CBE63" Style="{StaticResource MatrixButtonStyle}" />
-
-                <Button
-             Grid.Row="2"
-             Grid.Column="0"
-             Grid.ColumnSpan="3"
-             Text="Room"
-             Style="{StaticResource RoomButtonStyle}" />
-            </Grid>
-        </Border>
-
+        <components:ButtonsGrid Grid.Row="2" />
 
         <Border
             Grid.Row="3"
