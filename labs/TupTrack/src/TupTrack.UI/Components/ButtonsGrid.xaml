@@ -19,7 +19,7 @@
             <Setter Property="HeightRequest" Value="62" />
             <Setter Property="BorderWidth" Value="0" />
             <Setter Property="BorderColor" Value="White" />
-            <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
 
         <Style x:Key="RoomButtonStyle" TargetType="Button" BasedOn="{StaticResource MatrixButtonStyle}">
@@ -30,6 +30,7 @@
         <Style x:Key="SelectedButtonStyle" TargetType="Button" BasedOn="{StaticResource MatrixButtonStyle}">
             <Setter Property="BorderWidth" Value="2" />
             <Setter Property="Opacity" Value="1" />
+            <Setter Property="CornerRadius" Value="25"/>
         </Style>
 
 
@@ -41,14 +42,14 @@
          StrokeThickness="0"
          Padding="0">
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="30" />
+                <RoundRectangle CornerRadius="25" />
             </Border.StrokeShape>
 
             <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*">
-                <Button 
+                <Button Text="Stairs"
                     Grid.Row="0" 
                     Grid.Column="0" 
-                    Text="Stairs" 
+                     
                     BackgroundColor="#3968D8" 
                     Style="{StaticResource MatrixButtonStyle}"
                     Command="{Binding SetTupStateCommand}"
@@ -67,12 +68,10 @@
                     </Button.Triggers>
                 </Button>
 
-
-
-                <Button 
+                <Button Text="Flat" 
                     Grid.Row="0" 
                     Grid.Column="1" 
-                    Text="Flat" 
+                     
                     BackgroundColor="#D8B73E" 
                     Style="{StaticResource MatrixButtonStyle}" 
                     Command="{Binding SetTupStateCommand}"
@@ -89,12 +88,9 @@
                     </Button.Triggers>
                 </Button>
 
-
-
-                <Button 
+                <Button Text="Elevator"
                     Grid.Row="0" 
                     Grid.Column="2" 
-                    Text="Elevator" 
                     BackgroundColor="#D848C7" 
                     Style="{StaticResource MatrixButtonStyle}" 
 
@@ -112,13 +108,11 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                
-                
-                
-                <Button 
+
+                <Button Text="Turn" 
                     Grid.Row="1"
                     Grid.Column="0"
-                    Text="Turn"
+                    
                     BackgroundColor="#FF912A"
                     Style="{StaticResource MatrixButtonStyle}" 
                     Command="{Binding SetTupStateCommand}"
@@ -136,13 +130,14 @@
                     </Button.Triggers>
                 </Button>
 
-                <Button Grid.Row="1" 
-                        Grid.Column="1"
-                        Text="Event"
-                        BackgroundColor="#888888"
-                        Style="{StaticResource MatrixButtonStyle}"  
-                        Command="{Binding SetTupStateCommand}"
-                        CommandParameter="{x:Static domain:TupState.Event}">
+                <Button Text="Event"
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                        
+                    BackgroundColor="#888888"
+                    Style="{StaticResource MatrixButtonStyle}"  
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Event}">
 
                     <Button.Triggers>
                         <DataTrigger
@@ -156,10 +151,10 @@
                     </Button.Triggers>
                 </Button>
 
-                <Button 
+                <Button Text="Stop" 
                     Grid.Row="1" 
                     Grid.Column="2"
-                    Text="{Binding Test}" 
+                     
                     BackgroundColor="#9CBE63"
                     Style="{StaticResource MatrixButtonStyle}" 
                     Command="{Binding SetTupStateCommand}"
@@ -177,12 +172,23 @@
                     </Button.Triggers>
                 </Button>
 
-            <Button
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Text="Room"
-                    Style="{StaticResource RoomButtonStyle}" />
+
+            <Picker
+                Title="Choose Room"
+                ItemsSource="{Binding Rooms}"
+                SelectedItem="{Binding ChoosenRoom, Mode=TwoWay}" 
+                Grid.Row="2" 
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                TextColor = "White"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                FontSize="25"
+                
+                
+                Background="#3D3226"
+                />
+           
             </Grid>
     </Border>
 

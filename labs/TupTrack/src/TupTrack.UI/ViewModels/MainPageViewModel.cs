@@ -12,7 +12,16 @@ namespace TupTrack.UI.ViewModels
         private TupState tupState = TupState.Flat;
 
         
-        public ObservableCollection<string> Rooms { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Rooms { get; } = new ObservableCollection<string> { 
+            "Room1",
+            "Room2",
+            "Room3",
+            "Room4",
+        };
+
+        [ObservableProperty]
+        private string choosenRoom = "";
+
 
 
         [RelayCommand]
