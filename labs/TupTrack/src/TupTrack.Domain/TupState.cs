@@ -11,6 +11,6 @@ namespace TupTrack.Domain
         Stairs,
         Elevator,
         Event,
-
+        Stop,
     }
 }

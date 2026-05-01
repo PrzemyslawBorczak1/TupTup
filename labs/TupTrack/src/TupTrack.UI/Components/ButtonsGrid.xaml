@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TupTrack.UI.Components.ButtonsGrid">
+             x:Class="TupTrack.UI.Components.ButtonsGrid"
+             
+    
+            xmlns:domain="clr-namespace:TupTrack.Domain;assembly=TupTrack.Domain"
+             >
 
 
     <ContentView.Resources>
@@ -14,10 +18,18 @@
             <Setter Property="Padding" Value="0" />
             <Setter Property="HeightRequest" Value="62" />
             <Setter Property="BorderWidth" Value="0" />
+            <Setter Property="BorderColor" Value="White" />
+            <Setter Property="Opacity" Value="0.7" />
         </Style>
 
         <Style x:Key="RoomButtonStyle" TargetType="Button" BasedOn="{StaticResource MatrixButtonStyle}">
             <Setter Property="BackgroundColor" Value="#3D3226" />
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+
+        <Style x:Key="SelectedButtonStyle" TargetType="Button" BasedOn="{StaticResource MatrixButtonStyle}">
+            <Setter Property="BorderWidth" Value="2" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
 
 
@@ -33,15 +45,139 @@
             </Border.StrokeShape>
 
             <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*">
-                <Button Grid.Row="0" Grid.Column="0" Text="Stairs" BackgroundColor="#3968D8" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="1" Text="Flat" BackgroundColor="#D8B73E" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="2" Text="Elevator" BackgroundColor="#D848C7" Style="{StaticResource MatrixButtonStyle}" />
+                <Button 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Text="Stairs" 
+                    BackgroundColor="#3968D8" 
+                    Style="{StaticResource MatrixButtonStyle}"
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Stairs}">
 
-                <Button Grid.Row="1" Grid.Column="0" Text="Turn" BackgroundColor="#FF912A" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="1" Grid.Column="1" Text="Event" BackgroundColor="#888888" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="1" Grid.Column="2" Text="{Binding Test}" BackgroundColor="#9CBE63" Style="{StaticResource MatrixButtonStyle}" />
+                    <Button.Triggers>
+                        <DataTrigger 
+                            TargetType="Button" 
+                            Binding="{Binding TupState}" 
+                            Value="{x:Static domain:TupState.Stairs}">
 
-                <Button
+                        
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+
+
+                <Button 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Text="Flat" 
+                    BackgroundColor="#D8B73E" 
+                    Style="{StaticResource MatrixButtonStyle}" 
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Flat}">
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                            Binding="{Binding TupState}"
+                            Value="{x:Static domain:TupState.Flat}">
+                        
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+
+
+                <Button 
+                    Grid.Row="0" 
+                    Grid.Column="2" 
+                    Text="Elevator" 
+                    BackgroundColor="#D848C7" 
+                    Style="{StaticResource MatrixButtonStyle}" 
+
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Elevator}">
+
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                            Binding="{Binding TupState}"
+                            Value="{x:Static domain:TupState.Elevator}">
+
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                
+                
+                
+                <Button 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Turn"
+                    BackgroundColor="#FF912A"
+                    Style="{StaticResource MatrixButtonStyle}" 
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Turn}">
+
+                    <Button.Triggers>
+                        <DataTrigger
+                                TargetType="Button"
+                                Binding="{Binding TupState}"
+                                Value="{x:Static domain:TupState.Turn}">
+
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button Grid.Row="1" 
+                        Grid.Column="1"
+                        Text="Event"
+                        BackgroundColor="#888888"
+                        Style="{StaticResource MatrixButtonStyle}"  
+                        Command="{Binding SetTupStateCommand}"
+                        CommandParameter="{x:Static domain:TupState.Event}">
+
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                            Binding="{Binding TupState}"
+                            Value="{x:Static domain:TupState.Event}">
+
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button 
+                    Grid.Row="1" 
+                    Grid.Column="2"
+                    Text="{Binding Test}" 
+                    BackgroundColor="#9CBE63"
+                    Style="{StaticResource MatrixButtonStyle}" 
+                    Command="{Binding SetTupStateCommand}"
+                    CommandParameter="{x:Static domain:TupState.Stop}">
+                
+                    <Button.Triggers>
+                        <DataTrigger
+                            TargetType="Button"
+                             Binding="{Binding TupState}"
+                             Value="{x:Static domain:TupState.Stop}">
+
+                            <Setter Property="Style" Value="{StaticResource SelectedButtonStyle}" />
+
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+            <Button
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"

@@ -1,11 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Collections;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Text;
-using TupTrack.Domain;
 
+using TupTrack.Domain;
 
 namespace TupTrack.UI.ViewModels
 {
@@ -14,7 +11,14 @@ namespace TupTrack.UI.ViewModels
         [ObservableProperty]
         private TupState tupState = TupState.Flat;
 
-
+        
         public ObservableCollection<string> Rooms { get; } = new ObservableCollection<string>();
+
+
+        [RelayCommand]
+        private void SetTupState(TupState state)
+        {
+            TupState = state;
+        }
     }
 }
