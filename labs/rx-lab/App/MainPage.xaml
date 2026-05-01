@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.MainPage"
+             Title="Labs">
+
+    <VerticalStackLayout Padding="16" Spacing="12">
+        
+        <!-- LOGO -->
+        <Image
+            Source="silent_guide.png"
+            HeightRequest="185"
+            Aspect="AspectFit" />
+
+        <!-- SUBTITLE -->
+        <Label
+            Text="Indoor Localization (TRL-3 Proof of Concept)"
+            FontSize="14"
+            HorizontalTextAlignment="Center"
+            TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}" />
+            
+        <Label
+            Text="{Binding Source={x:Static Application.Current},
+                   Path=VersionString}"
+            FontSize="12"
+            HorizontalTextAlignment="Center"
+            TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}" />
+        
+        
+        <Button Text="Motion Lab"
+                Clicked="OnMotionLabClicked" />
+
+        <Button Text="Fingerprint Lab"
+                Clicked="OnFingerprintLabClicked" />
+        
+        <Button Text="Barometer Lab"
+                Clicked="OnBarometerLabClicked" />
+        
+    </VerticalStackLayout>
+    
+</ContentPage>

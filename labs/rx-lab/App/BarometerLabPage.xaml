@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.BarometerLabPage"
+             Title="Barometer Lab">
+    <VerticalStackLayout Padding="16" Spacing="12">
+
+        <Label Text="Barometer (Raw + Relative Altitude)"
+               FontAttributes="Bold"
+               FontSize="18" />
+
+        <Label Text="{Binding PressureText}"
+               FontFamily="Courier"
+               FontSize="14" />
+
+        <Label Text="{Binding ReferenceText}"
+               FontFamily="Courier"
+               FontSize="14" />
+
+        <Button Text="Set Reference (0)"
+                Clicked="OnSetReferenceClicked" />
+
+        <Label Text="{Binding DeltaText}"
+               FontFamily="Courier"
+               FontSize="16"
+               FontAttributes="Bold" />
+
+        <Label Text="{Binding FloorText}"
+               FontFamily="Courier"
+               FontSize="16"
+               FontAttributes="Bold" />
+
+        <Label Text="{Binding DebugText}"
+               FontFamily="Courier"
+               FontSize="12" />
+
+    </VerticalStackLayout>
+</ContentPage>
