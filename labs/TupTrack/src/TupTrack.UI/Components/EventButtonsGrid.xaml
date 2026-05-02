@@ -33,6 +33,13 @@
             <Setter Property="CornerRadius" Value="25"/>
         </Style>
 
+        <Style x:Key="PickerStyle" TargetType="Picker" >
+            <Setter Property="TextColor" Value = "White" />
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+
 
     </ContentView.Resources>
 
@@ -45,7 +52,7 @@
                 <RoundRectangle CornerRadius="25" />
             </Border.StrokeShape>
 
-            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,*,*">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*,*">
                 <Button Text="Stairs"
                     Grid.Row="0" 
                     Grid.Column="0" 
@@ -173,23 +180,30 @@
                 </Button>
 
 
-            <Picker
-                Title="Choose Room"
-                ItemsSource="{Binding Rooms}"
-                SelectedItem="{Binding ChoosenRoom, Mode=TwoWay}" 
-                Grid.Row="2" 
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                TextColor = "White"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center"
-                FontSize="25"
+                <Picker Title="Speed" 
+                       ItemsSource="{Binding SpeedSensor}"
+                        SelectedItem="{Binding ChoosenSpeedSensor, Mode=TwoWay}" 
+                        Grid.Row="2" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource PickerStyle}"
+                    
+                        BackgroundColor="#D8B73E"
+                        />
+
+                <Picker Title="Choose Room"
+                    ItemsSource="{Binding Rooms}"
+                    SelectedItem="{Binding ChoosenRoom, Mode=TwoWay}" 
+                    Grid.Row="3" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Style="{StaticResource PickerStyle}"
+                    
+                    Background="#3D3226"
+                    />
                 
-                
-                Background="#3D3226"
-                />
-           
-            </Grid>
+               
+        </Grid>
     </Border>
 
 

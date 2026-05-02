@@ -103,22 +103,7 @@
         <!-- Buttons Grid -->
         <components:ButtonsGrid Grid.Row="2" />
 
-        <Border
-            Grid.Row="3"
-            VerticalOptions="End"
-            StrokeThickness="0"
-            BackgroundColor="{StaticResource SurfaceBrown}"
-            Padding="0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="30" />
-            </Border.StrokeShape>
-
-            <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
-                <Button Grid.Row="0" Grid.Column="0" Text="Note" BackgroundColor="#3968D8" Style="{StaticResource MatrixButtonStyle}" />
-                <Button Grid.Row="0" Grid.Column="1" Text="Group" BackgroundColor="#D8B73E" Style="{StaticResource MatrixButtonStyle}" />
-
-            </Grid>
-        </Border>
+        <components:MetaDataButtons Grid.Row ="3"/>
 
 
     </Grid>   

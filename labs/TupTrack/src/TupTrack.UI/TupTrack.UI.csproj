@@ -78,10 +78,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Components\ButtonsGrid.xaml">
+	  <Compile Update="Components\EventButtonsGrid.xaml.cs">
+	    <DependentUpon>EventButtonsGrid.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Components\EventButtonsGrid.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Components\LabelsBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\MetaDataButtons.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
