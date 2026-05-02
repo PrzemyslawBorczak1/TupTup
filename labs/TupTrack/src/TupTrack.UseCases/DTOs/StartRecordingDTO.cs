@@ -9,5 +9,9 @@ namespace TupTrack.UseCases.DTOs
     {
         public DateTime StartTime { get; set; }
         public TupState FirstTupState { get; set; }
+
+        public string? Room { get; set; } 
+
+
     }
 }

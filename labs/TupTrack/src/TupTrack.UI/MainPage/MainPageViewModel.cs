@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TupTrack.Domain;
-using TupTrack.Infrastructure;
 using TupTrack.UseCases.Handlers;
 using TupTrack.UseCases.DTOs;
 
@@ -11,7 +10,6 @@ namespace TupTrack.UI.MainPage
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private AppDatabase _appDb;
         private StartRecordingHandler _startRecordingHandler;
 
         [ObservableProperty]
@@ -66,9 +64,8 @@ namespace TupTrack.UI.MainPage
 
 
 
-        public MainPageViewModel(AppDatabase appDatabase, StartRecordingHandler startRecordingHandler)
+        public MainPageViewModel(StartRecordingHandler startRecordingHandler)
         {
-            _appDb = appDatabase;
             _startRecordingHandler = startRecordingHandler;
         }
 

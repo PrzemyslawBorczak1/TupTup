@@ -1,7 +1,8 @@
 ﻿using TupTrack.UseCases.SensorCoordinator;
-using TupTrack.Infrastructure;
+
 using TupTrack.Domain.Entities;
 using TupTrack.UseCases.DTOs;
+using TupTrack.UseCases.Repositories;
 
 
 namespace TupTrack.UseCases.Handlers;
@@ -9,8 +10,8 @@ namespace TupTrack.UseCases.Handlers;
 public class StartRecordingHandler
 {
     ISensorCoordinator _sensorCoordinator;
-    AppDatabase _appDatabase;
-    public StartRecordingHandler(ISensorCoordinator sensorCoordinator, AppDatabase appDatabase)
+    IRecordingRepository _appDatabase;
+    public StartRecordingHandler(ISensorCoordinator sensorCoordinator, IRecordingRepository appDatabase)
     {
         _sensorCoordinator = sensorCoordinator;
         _appDatabase = appDatabase;
