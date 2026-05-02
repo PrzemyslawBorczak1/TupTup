@@ -7,6 +7,7 @@
     Shell.NavBarIsVisible="False"
     
     xmlns:components="clr-namespace:TupTrack.UI.MainPage"
+    Appearing="OnAppearance"
     
     >
 

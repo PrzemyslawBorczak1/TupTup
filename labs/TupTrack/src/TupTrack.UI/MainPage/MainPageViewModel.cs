@@ -28,7 +28,7 @@ namespace TupTrack.UI.MainPage
         private string note = "Note";
 
 
-        public ObservableCollection<string> Rooms { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Rooms { get; private set; } = new ObservableCollection<string>();
         public ObservableCollection<SensorSpeed> SpeedSensor { get; } = new ObservableCollection<SensorSpeed>
         {
             SensorSpeed.Default,
@@ -36,7 +36,7 @@ namespace TupTrack.UI.MainPage
             SensorSpeed.Game,
             SensorSpeed.Fastest,
         };
-        public ObservableCollection<string> Groups { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Groups { get; private set; } = new ObservableCollection<string>();
 
         [RelayCommand]
         private void SetTupState(TupState state) => TupState = state;
@@ -70,7 +70,9 @@ namespace TupTrack.UI.MainPage
 
         public async Task LoadOptions()
         {
-            var rooms = new ObservableCollection<string>
+            if (Rooms.Count == 0)
+            {
+                List<string> newRooms = new()
             {
                 "Room1",
             "Room2",
@@ -102,8 +104,15 @@ namespace TupTrack.UI.MainPage
             "Room4",
             "Room67",
         };
+                foreach (var s in newRooms)
+                {
+                    Rooms.Add(s);
+                }
+            }
 
-            var groups = new ObservableCollection<string>
+            if (Groups.Count == 0)
+            {
+                List<string> newGroups = new()
                 {
                     "Gr1",
                     "Gr2",
@@ -111,8 +120,13 @@ namespace TupTrack.UI.MainPage
                     "Gr4",
                     "Gr5",
                 };
+                foreach (var s in newGroups)
+                {
+                    Groups.Add(s);
+                }
+            }
 
-
+            Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
 
     }

@@ -26,6 +26,13 @@ public partial class MainPage : ContentPage
         SeedBars();
     }
 
+    private async void OnAppearance(object? sender, EventArgs e)
+    {
+        if (BindingContext is MainPageViewModel vm) {
+            await vm.LoadOptions();
+        }
+    }
+
     private async void OnStartRecordingClicked(object? sender, EventArgs e)
     {
         _app.StartRecording();
