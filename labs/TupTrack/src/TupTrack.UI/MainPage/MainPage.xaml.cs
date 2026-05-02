@@ -11,11 +11,11 @@ public partial class MainPage : ContentPage
     private TimeSpan _recordingElapsed;
     UC.Application _app;
 
-    public MainPage(UC.Application app)
+    public MainPage(UC.Application app, MainPageViewModel vm)
     {
         
         InitializeComponent();
-        BindingContext = new MainPageViewModel();
+        BindingContext = vm;
 
         _app = app;
 

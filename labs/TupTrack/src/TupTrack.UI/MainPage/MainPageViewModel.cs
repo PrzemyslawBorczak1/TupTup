@@ -28,11 +28,6 @@ namespace TupTrack.UI.MainPage
         private string note = "Note";
 
 
-
-        [RelayCommand]
-        private void SetTupState(TupState state) =>  TupState = state;
-
-
         public ObservableCollection<string> Rooms { get; } = new ObservableCollection<string>();
         public ObservableCollection<SensorSpeed> SpeedSensor { get; } = new ObservableCollection<SensorSpeed>
         {
@@ -43,8 +38,11 @@ namespace TupTrack.UI.MainPage
         };
         public ObservableCollection<string> Groups { get; } = new ObservableCollection<string>();
 
-        
-        partial void OnChoosenRoomChanged(string? value)
+        [RelayCommand]
+        private void SetTupState(TupState state) => TupState = state;
+
+
+        partial void OnChoosenRoomChanged(string value)
         {
             if (value is null)
             {
@@ -72,7 +70,7 @@ namespace TupTrack.UI.MainPage
 
         public async Task LoadOptions()
         {
-            var a  = new ObservableCollection<string>
+            var rooms = new ObservableCollection<string>
             {
                 "Room1",
             "Room2",
@@ -105,20 +103,17 @@ namespace TupTrack.UI.MainPage
             "Room67",
         };
 
-            var b = new ObservableCollection<string>
-        {
-            "Gr1",
-            "Gr2",
-            "Gr3",
-            "Gr4",
-            "Gr5",
-        };
+            var groups = new ObservableCollection<string>
+                {
+                    "Gr1",
+                    "Gr2",
+                    "Gr3",
+                    "Gr4",
+                    "Gr5",
+                };
 
 
         }
-
-
-
 
     }
 }
