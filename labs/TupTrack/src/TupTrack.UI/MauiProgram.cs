@@ -4,6 +4,7 @@ using TupTrack.SensorServices;
 using TupTrack.UseCases;
 using TupTrack.UseCases.SensorCoordinator;
 using UC = TupTrack.UseCases;
+using MP = TupTrack.UI.MainPage;
 
 namespace TupTrack.UI;
 
@@ -44,6 +45,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<UC.Application>();
 
+		builder.Services.AddSingleton<MP.MainPageViewModel>();
+        builder.Services.AddTransient<MP.MainPage>();
 
 
         return builder.Build();
