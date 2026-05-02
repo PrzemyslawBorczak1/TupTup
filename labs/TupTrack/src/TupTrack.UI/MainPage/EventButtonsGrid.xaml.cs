@@ -1,8 +1,8 @@
 namespace TupTrack.UI.MainPage;
 
-public partial class ButtonsGrid : ContentView
+public partial class EventButtonsGrid : ContentView
 {
-	public ButtonsGrid()
+	public EventButtonsGrid()
 	{
 		InitializeComponent();
 	}

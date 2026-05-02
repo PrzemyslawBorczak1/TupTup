@@ -30,7 +30,7 @@
                 
                 BackgroundColor="#D8B73E"
                 ItemsSource = "{Binding Groups}"
-                SelectedItem="{Binding ChoosenGroup, Mode=TwoWay}" 
+                SelectedItem="{Binding ChosenGroup, Mode=TwoWay}" 
                 />
             
             

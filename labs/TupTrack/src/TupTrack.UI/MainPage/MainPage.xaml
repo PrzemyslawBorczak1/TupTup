@@ -101,7 +101,7 @@
 
 
         <!-- Buttons Grid -->
-        <components:ButtonsGrid Grid.Row="2" />
+        <components:EventButtonsGrid Grid.Row="2" />
 
         <components:MetaDataButtons Grid.Row ="3"/>
 

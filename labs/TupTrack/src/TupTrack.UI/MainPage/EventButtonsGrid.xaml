@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TupTrack.UI.MainPage.ButtonsGrid"
+             x:Class="TupTrack.UI.MainPage.EventButtonsGrid"
              
     
             xmlns:domain="clr-namespace:TupTrack.Domain;assembly=TupTrack.Domain"
@@ -182,7 +182,7 @@
 
                 <Picker Title="Speed" 
                        ItemsSource="{Binding SpeedSensor}"
-                        SelectedItem="{Binding ChoosenSpeedSensor, Mode=TwoWay}" 
+                        SelectedItem="{Binding ChosenSpeedSensor, Mode=TwoWay}" 
                         Grid.Row="2" 
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
@@ -193,7 +193,7 @@
 
                 <Picker Title="Choose Room"
                     ItemsSource="{Binding Rooms}"
-                    SelectedItem="{Binding ChoosenRoom, Mode=TwoWay}" 
+                    SelectedItem="{Binding ChosenRoom, Mode=TwoWay}" 
                     Grid.Row="3" 
                     Grid.Column="0"
                     Grid.ColumnSpan="3"

@@ -15,13 +15,13 @@ namespace TupTrack.UI.MainPage
         private TupState tupState = TupState.Flat;
 
         [ObservableProperty]
-        private string choosenRoom = "";
+        private string chosenRoom = "";
 
         [ObservableProperty]
-        private SensorSpeed choosenSpeedSensor = SensorSpeed.Default;
+        private SensorSpeed chosenSpeedSensor = SensorSpeed.Fastest;
 
         [ObservableProperty]
-        private string choosenGroup = "";
+        private string chosenGroup = "";
 
 
         [ObservableProperty]
@@ -42,23 +42,23 @@ namespace TupTrack.UI.MainPage
         private void SetTupState(TupState state) => TupState = state;
 
 
-        partial void OnChoosenRoomChanged(string value)
+        partial void OnChosenRoomChanged(string value)
         {
             if (value is null)
             {
                 return;
             }
-            Debug.WriteLine(choosenRoom);
+            Debug.WriteLine(chosenRoom);
         }
 
-        partial void OnChoosenSpeedSensorChanged(SensorSpeed value)
+        partial void OnChosenSpeedSensorChanged(SensorSpeed value)
         {
-            Debug.WriteLine(ChoosenSpeedSensor);
+            Debug.WriteLine(ChosenSpeedSensor);
         }
 
-        partial void OnChoosenGroupChanged(string value)
+        partial void OnChosenGroupChanged(string value)
         {
-            Debug.WriteLine(ChoosenGroup);
+            Debug.WriteLine(ChosenGroup);
         }
 
 
