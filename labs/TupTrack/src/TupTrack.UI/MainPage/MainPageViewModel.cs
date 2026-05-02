@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TupTrack.Domain;
 using TupTrack.Infrastructure;
+using TupTrack.UseCases.Handlers;
+using TupTrack.UseCases.DTOs;
 
 namespace TupTrack.UI.MainPage
 {
     public partial class MainPageViewModel : ObservableObject
     {
         private AppDatabase _appDb;
+        private StartRecordingHandler _startRecordingHandler;
 
         [ObservableProperty]
         private TupState tupState = TupState.Flat;
@@ -63,9 +66,10 @@ namespace TupTrack.UI.MainPage
 
 
 
-        public MainPageViewModel(AppDatabase appDatabase)
+        public MainPageViewModel(AppDatabase appDatabase, StartRecordingHandler startRecordingHandler)
         {
             _appDb = appDatabase;
+            _startRecordingHandler = startRecordingHandler;
         }
 
         public async Task LoadOptions()
@@ -128,6 +132,14 @@ namespace TupTrack.UI.MainPage
 
             Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
+
+
+
+        [RelayCommand]
+        public async Task StartRecording()
+            => await _startRecordingHandler.StartRecording(new StartRecordingDTO { FirstTupState = TupState, StartTime = DateTime.Now });
+        
+
 
     }
 }

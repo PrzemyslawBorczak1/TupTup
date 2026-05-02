@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using TupTrack.Domain;
-using TupTrack.Infrastructure.Records;
+using Entities = TupTrack.Domain.Entities;
+using Tables = TupTrack.Infrastructure.Tables;
 
 namespace TupTrack.Infrastructure;
 
@@ -20,47 +21,42 @@ public class AppDatabase
         if (_initialized)
             return;
 
-        await _connection.CreateTableAsync<Recording>();
-        await _connection.CreateTableAsync<TupStateEntity>();
-        await _connection.CreateTableAsync<RecordingGroup>();
-        await _connection.CreateTableAsync<SensorType>();
-        await _connection.CreateTableAsync<SensorReading>();
-
+        await _connection.CreateTableAsync<Tables.Recording>();
+        await _connection.CreateTableAsync<Tables.TupStateEntity>();
+        await _connection.CreateTableAsync<Tables.RecordingGroup>();
+        await _connection.CreateTableAsync<Tables.SensorType>();
+        await _connection.CreateTableAsync<Tables.SensorReading>();
         _initialized = true;
     }
 
-    public async Task<Guid> AddStartRecordingAsync(StartRecordingDTO startRecordingDTO)
+
+    public async Task AddRecording(Entities.Recording recording)
     {
         await InitAsync();
-
-        var id = Guid.NewGuid();
-        var recording = new Recording
+        Tables.Recording rec = new()
         {
-            Id = id,
-            StartTime = startRecordingDTO.StartTime,
+            Id = recording.Id,
+            GroupType = recording.GroupType,
+            StartTime = recording.StartTime,
+            EndTime = recording.StartTime,
+            Note = recording.Note
         };
-
-
-        var tupStateId = Guid.NewGuid();
-        var tupStateEntity = new TupStateEntity
-        {
-            Id = tupStateId,
-            RecordingId = id,
-            FromTimestamp = startRecordingDTO.StartTime,
-            State = startRecordingDTO.FirstTupState,
-        };
-
-
-        await _connection.RunInTransactionAsync(tran =>
-        {
-            tran.Insert(recording);
-            tran.Insert(tupStateEntity);
-        });
-
-        return id;
-
+        await _connection.InsertAsync(rec);
     }
 
+    public async Task AddTupState(Entities.TupStateEntity tupStateEntity)
+    {
+        await InitAsync();
+        Tables.TupStateEntity tupState = new()
+        {
+            Id = tupStateEntity.Id,
+            RecordingId = tupStateEntity.RecordingId,
+            State = tupStateEntity.State,
+            FromTimestamp = tupStateEntity.FromTimestamp,
+            Description = tupStateEntity.Description
+        };
+        await _connection.InsertAsync(tupState);
 
+    }
 }
 

@@ -1,6 +1,6 @@
-﻿using TupTrack.Infrastructure;
-using TupTrack.UseCases;
-using UC = TupTrack.UseCases;
+﻿
+using TupTrack.UseCases.Handlers;
+using TupTrack.UseCases.DTOs;
 using TupTrack.UI;
 
 namespace TupTrack.UI.MainPage;
@@ -9,15 +9,13 @@ public partial class MainPage : ContentPage
 {
     private readonly IDispatcherTimer _recordingTimer;
     private TimeSpan _recordingElapsed;
-    UC.Application _app;
 
-    public MainPage(UC.Application app, MainPageViewModel vm)
+    public MainPage( MainPageViewModel vm)
     {
         
         InitializeComponent();
         BindingContext = vm;
 
-        _app = app;
 
         _recordingTimer = Dispatcher.CreateTimer();
         _recordingTimer.Interval = TimeSpan.FromSeconds(1);
@@ -33,12 +31,11 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private async void OnStartRecordingClicked(object? sender, EventArgs e)
-    {
+    //private async void OnStartRecordingClicked(object? sender, EventArgs e)
+    //{
         
-       
-        SetRecordingState(true);
-    }
+    //    SetRecordingState(true);
+    //}
 
     private void OnStopRecordingClicked(object? sender, EventArgs e)
     {

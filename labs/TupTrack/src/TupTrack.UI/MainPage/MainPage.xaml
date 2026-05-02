@@ -71,7 +71,7 @@
                 FontSize="40"
                 TextColor="{StaticResource TextWhite}"
                 BackgroundColor="#31C95E"
-                Clicked="OnStartRecordingClicked" />
+                Command="{Binding StartRecordingCommand}" />
 
             <VerticalStackLayout
                 x:Name="RecordingInfoView"

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TupTrack.Infrastructure.Records
+namespace TupTrack.Domain.Entities
 {
     public class SensorReading
     {

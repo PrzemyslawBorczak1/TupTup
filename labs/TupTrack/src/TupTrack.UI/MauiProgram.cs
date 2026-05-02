@@ -4,6 +4,7 @@ using TupTrack.SensorServices;
 using TupTrack.UseCases;
 using TupTrack.UseCases.SensorCoordinator;
 using UC = TupTrack.UseCases;
+using TupTrack.UseCases.Handlers;
 using MP = TupTrack.UI.MainPage;
 
 namespace TupTrack.UI;
@@ -33,18 +34,17 @@ public static class MauiProgram
         builder.Services.AddSingleton(new AppDatabase(databasePath));
 
 
-
+		// Sensors
         builder.Services.AddSingleton<ISensorService, BarometerService>();
         builder.Services.AddSingleton<ISensorService, AccelerometerService>();
 
 		builder.Services.AddSingleton<ISensorCoordinator, SensorCoordinator>();
 
+		// handlers
+        builder.Services.AddSingleton<StartRecordingHandler>();
 
 
-        builder.Services.AddSingleton<RecordingService>();
-
-        builder.Services.AddSingleton<UC.Application>();
-
+		// UI
 		builder.Services.AddSingleton<MP.MainPageViewModel>();
         builder.Services.AddTransient<MP.MainPage>();
 
