@@ -22,6 +22,7 @@ erDiagram
     SENSOR_READING {
         bigint id PK
         bigint recording_id FK
+        bigint sensor_type FK
         datetime timestamp
         float val
     }
