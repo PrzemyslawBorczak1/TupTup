@@ -37,22 +37,7 @@ public partial class MainPage : ContentPage
     {
         _app.StartRecording();
 
-        var databasePath = Path.Combine(
-            FileSystem.AppDataDirectory,
-            "tuptrack.db3");
-        var test = new AppDatabase(databasePath);
-        try
-        {
-            var rc = new Infrastructure.Records.ExampleRecord();
-            rc.Id = Guid.NewGuid();
-            await test.Save(rc);
-        }
-        catch (Exception)
-        { }
-        var a = await test.Get();
-
-
-
+       
         SetRecordingState(true);
     }
 

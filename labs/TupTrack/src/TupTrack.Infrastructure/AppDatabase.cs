@@ -1,5 +1,4 @@
-﻿
-using SQLite;
+﻿using SQLite;
 using TupTrack.Infrastructure.Records;
 
 
@@ -13,6 +12,7 @@ public class AppDatabase
     public AppDatabase(string path)
     {
         _connection = new SQLiteAsyncConnection(path);
+
     }
 
     private async Task InitAsync()
@@ -20,21 +20,16 @@ public class AppDatabase
         if (_initialized)
             return;
 
-        await _connection.CreateTableAsync<ExampleRecord>();
+        await _connection.CreateTableAsync<Recording>();
+        await _connection.CreateTableAsync<LabelType>();
+        await _connection.CreateTableAsync<TimestampLabel>();
+        await _connection.CreateTableAsync<RecordingGroup>();
+        await _connection.CreateTableAsync<SensorType>();
+        await _connection.CreateTableAsync<SensorReading>();
 
         _initialized = true;
     }
 
-    public async Task Save(ExampleRecord e)
-    {
-        await InitAsync();
-        await _connection.InsertAsync(e);
-    }
-
-    public async Task<List<ExampleRecord>> Get()
-    {
-        await InitAsync();
-        return await _connection.Table<ExampleRecord>().ToListAsync();
-    }
+    
 }
 

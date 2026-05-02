@@ -13,9 +13,7 @@ erDiagram
         int id PK
         int group_type FK
         datetime started_at
-        datetime ended_at
-        int duration_ms
-        boolean is_local
+        datetime ended_at "nullable"
         string note "nullable"
     }
 
@@ -56,5 +54,5 @@ erDiagram
 ## Notes
 - Wi-Fi, Bluetooth, and other named sensors will be stored as attributes in `SensorType`.
   - TODO: add these attributes.
-- It is possible that some additional fields related to the upload state of a recording will be required.
+- If there will be decision to virtuali synchornise additional fields will be needed
 
