@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TupTrack.Domain;
 
-namespace TupTrack.UI.ViewModels
+namespace TupTrack.UI.MainPage
 {
     public partial class MainPageViewModel : ObservableObject
     {
