@@ -35,8 +35,7 @@ public partial class MainPage : ContentPage
 
     private async void OnStartRecordingClicked(object? sender, EventArgs e)
     {
-        _app.StartRecording();
-
+        
        
         SetRecordingState(true);
     }

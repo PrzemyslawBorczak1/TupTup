@@ -3,48 +3,57 @@
 
 ```mermaid
 erDiagram
-    RECORDING ||--o{ TIMESTAMP_LABEL : has
+    RECORDING ||--o{ TUP_STATE : has
+    RECORDING ||--o{ ROOM : has
+    ROOMS ||--o{ ROOM : has
     RECORDING }o--|| RECORDING_GROUP : is
-    LABEL_TYPE ||--o{ TIMESTAMP_LABEL : classifies
     RECORDING ||--|{ SENSOR_READING : has
     SENSOR_READING }o--|| SENSOR_TYPE : is
 
     RECORDING {
         int id PK
-        int group_type FK
+        int group_type FK "nullable"
         datetime started_at
         datetime ended_at "nullable"
         string note "nullable"
     }
 
     SENSOR_READING {
-        bigint id PK
-        bigint recording_id FK
-        bigint sensor_type FK
+        int id PK
+        int recording_id FK
+        int sensor_type FK
         datetime timestamp
         float val
     }
 
     SENSOR_TYPE {
-        bigint id PK
+        int id PK
         string name
         int dim
         string json_spec "nullable"
     }
 
-    LABEL_TYPE {
+    TUP_STATE  {
         int id PK
-        string name
-        string description 
-    }
-    TIMESTAMP_LABEL {
-        bigint id PK
         int recording_id FK
-        int label_type_id FK
-        datetime timestamp
+        tup_state state
+        datetime from_timestamp
         string description "nullable"
     }
 
+    ROOMS{
+        string name PK
+        string description "nullable"
+    }
+
+    ROOM  {
+        int id PK
+        string room_id FK
+        int recording_id FK
+        datetime from_timestamp
+        string description "nullable"
+    }
+   
     RECORDING_GROUP{
         string name PK
         string description

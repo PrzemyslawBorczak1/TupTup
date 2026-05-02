@@ -1,15 +1,15 @@
-﻿
+﻿using TupTrack.Domain;
 
 namespace TupTrack.UseCases
 {
     public class Application 
     {
-        StartRecordingUC _startRecording;
-        public Application(StartRecordingUC sr)
+        RecordingService _startRecording;
+        public Application(RecordingService sr)
         {
             _startRecording = sr;
         }
 
-        public void StartRecording() => _startRecording.StartRecording();
+        public async Task StartRecording(StartRecordingDTO startRecordingDTO) => await _startRecording.StartRecording(startRecordingDTO);
     }
 }

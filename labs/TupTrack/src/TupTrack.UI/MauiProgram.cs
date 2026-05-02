@@ -41,7 +41,7 @@ public static class MauiProgram
 
 
 
-        builder.Services.AddSingleton<StartRecordingUC>();
+        builder.Services.AddSingleton<RecordingService>();
 
         builder.Services.AddSingleton<UC.Application>();
 
