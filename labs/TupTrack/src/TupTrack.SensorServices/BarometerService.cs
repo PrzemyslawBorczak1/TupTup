@@ -9,24 +9,24 @@ public class BarometerService: SensorService<double>, ISensorService
 
     private bool isRecording = false;
 
-    public SensorSpeed SensorSpeed
+    
+    public BarometerService() : base() { }
+
+    public void SetSpeed(Domain.SensorSpeed speed)
     {
-        get => _sensorSpeed;
-        set {
+        var value = Converters.ConvertDomainToServiceSpeed(speed);
 
-            if (_sensorSpeed == value)
-                return;
+        if (_sensorSpeed == value)
+            return;
 
-            _sensorSpeed = value;
-            if (Barometer.IsMonitoring)
-            {
-                Barometer.Stop();
-                Barometer.Start(_sensorSpeed);
-            }
+        _sensorSpeed = value;
+        if (Barometer.IsMonitoring)
+        {
+            Barometer.Stop();
+            Barometer.Start(_sensorSpeed);
         }
 
     }
-    public BarometerService() : base() { }
 
     public bool IsSupported() => Barometer.IsSupported;
 

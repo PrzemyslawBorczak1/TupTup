@@ -44,5 +44,7 @@ namespace TupTrack.Infrastructure.Repositories
             await _databaseContext.Connection.InsertAsync(tupState);
 
         }
+
+
     }
 }

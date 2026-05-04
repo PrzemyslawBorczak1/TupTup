@@ -4,8 +4,8 @@
 ```mermaid
 erDiagram
     RECORDING ||--o{ TUP_STATE : has
-    RECORDING ||--o{ ROOM : has
-    ROOMS ||--o{ ROOM : has
+    RECORDING ||--o{ ROOM_TIMESTAMP : has
+    ROOMS ||--o{ ROOM_TIMESTAMP : has
     RECORDING }o--|| RECORDING_GROUP : is
     RECORDING ||--|{ SENSOR_READING : has
     SENSOR_READING }o--|| SENSOR_TYPE : is
@@ -46,7 +46,7 @@ erDiagram
         string description "nullable"
     }
 
-    ROOM  {
+    ROOM_TIMESTAMP  {
         int id PK
         string room_id FK
         int recording_id FK

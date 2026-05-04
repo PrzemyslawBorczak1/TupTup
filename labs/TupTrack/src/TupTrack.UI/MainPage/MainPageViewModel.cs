@@ -2,9 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using TupTrack.Domain;
+
+using  TupTrack.Domain;
+using Domain = TupTrack.Domain;
 using TupTrack.UseCases.Handlers;
 using TupTrack.UseCases.DTOs;
+
 
 namespace TupTrack.UI.MainPage
 {
@@ -19,7 +22,7 @@ namespace TupTrack.UI.MainPage
         private string chosenRoom = "";
 
         [ObservableProperty]
-        private SensorSpeed chosenSpeedSensor = SensorSpeed.Fastest;
+        private Domain.SensorSpeed chosenSpeedSensor = Domain.SensorSpeed.Fast;
 
         [ObservableProperty]
         private string chosenGroup = "";
@@ -30,12 +33,12 @@ namespace TupTrack.UI.MainPage
 
 
         public ObservableCollection<string> Rooms { get; private set; } = new ObservableCollection<string>();
-        public ObservableCollection<SensorSpeed> SpeedSensor { get; } = new ObservableCollection<SensorSpeed>
+        public ObservableCollection<Domain.SensorSpeed> SpeedSensor { get; } = new ObservableCollection<Domain.SensorSpeed>
         {
-            SensorSpeed.Default,
-            SensorSpeed.UI,
-            SensorSpeed.Game,
-            SensorSpeed.Fastest,
+            Domain.SensorSpeed.Default,
+            Domain.SensorSpeed.Slow,
+            Domain.SensorSpeed.Medium,
+            Domain.SensorSpeed.Fast,
         };
         public ObservableCollection<string> Groups { get; private set; } = new ObservableCollection<string>();
 
@@ -52,7 +55,7 @@ namespace TupTrack.UI.MainPage
             Debug.WriteLine(chosenRoom);
         }
 
-        partial void OnChosenSpeedSensorChanged(SensorSpeed value)
+        partial void OnChosenSpeedSensorChanged(Domain.SensorSpeed value)
         {
             Debug.WriteLine(ChosenSpeedSensor);
         }

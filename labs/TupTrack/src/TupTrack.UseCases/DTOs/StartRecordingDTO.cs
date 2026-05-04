@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using TupTrack.Domain;
+using TupTrack.UseCases.SensorCoordinator;
 
 namespace TupTrack.UseCases.DTOs
 {
@@ -9,9 +8,8 @@ namespace TupTrack.UseCases.DTOs
     {
         public DateTime StartTime { get; set; }
         public TupState FirstTupState { get; set; }
-
         public string? Room { get; set; } 
-
+        public SensorSpeed SensorSpeed { get; set; }
 
     }
 }

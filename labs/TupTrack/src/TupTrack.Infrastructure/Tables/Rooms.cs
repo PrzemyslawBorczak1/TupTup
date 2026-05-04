@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TupTrack.Domain.Entities
+namespace TupTrack.Infrastructure.Tables
 {
-    public class RecordingGroup
+    public class Rooms
     {
-        public Guid Id { get; set; }
+        [SQLite.PrimaryKey]
         public string Name { get; set; }
         public string? Description { get; set; } = null;
     }
