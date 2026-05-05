@@ -9,6 +9,5 @@ namespace TupTrack.UseCases.Repositories
 
         public Task<Room> GetRoomAsync(string roomName);
 
-
     }
 }

@@ -16,44 +16,38 @@ public class StartRecordingHandler // TODO  inital room    no room exception han
         _recordingRepository = recordingRepository;
     }
 
-    public async Task<Guid> StartRecording(StartRecordingDTO startRecordingDTO)
+    public async Task<Guid> Handle(StartRecordingDTO startRecordingDTO)
     {
+
+
+        if (string.IsNullOrEmpty(startRecordingDTO.Room))
+        {
+            throw new ArgumentException("Room name cannot be null or empty.");
+        }
+
+        var initialRoom = await _recordingRepository.GetRoomAsync(startRecordingDTO.Room);
+
+
+
+        var recording = new Recording(startRecordingDTO.StartTime);
+        var firstTupStateEntity = new TupStateEntity(recording.Id, startRecordingDTO.FirstTupState, startRecordingDTO.StartTime);
+
+        var roomTimestamp = new RoomTimestamp(initialRoom.Name, recording.Id, startRecordingDTO.StartTime);
+
+        await _recordingRepository.AddInitialRecording(recording, firstTupStateEntity, roomTimestamp);
 
         try
         {
-            if (string.IsNullOrEmpty(startRecordingDTO.Room))
-            {
-                //throw new ArgumentException("Room name cannot be null or empty.");
-            }
-
-            //var initialRoom = await _recordingRepository.GetRoomAsync(startRecordingDTO.Room);
-
-
-
-            var recording = new Recording(startRecordingDTO.StartTime);
-            var firstTupStateEntity = new TupStateEntity(recording.Id, startRecordingDTO.FirstTupState, startRecordingDTO.StartTime);
-
-            var roomTimestamp = new RoomTimestamp(initialRoom.Name, recording.Id, startRecordingDTO.StartTime);
-
-            await _recordingRepository.AddInitialRecording(recording, firstTupStateEntity, roomTimestamp);
-
-            try
-            {
-                _sensorCoordinator.SetSpeed(startRecordingDTO.SensorSpeed);
-                _sensorCoordinator.Start();
-            }
-            catch (Exception ex)
-            {
-                // TODO handle sensor coordinator start failure, 
-            }
-
-            return recording.Id;
+            _sensorCoordinator.SetSpeed(startRecordingDTO.SensorSpeed);
+            _sensorCoordinator.Start();
         }
-        catch (Exception ex) // TODO dlete later
+        catch (Exception ex)
         {
-            return Guid.Empty;
+            // TODO handle sensor coordinator start failure, 
         }
+
+        return recording.Id;
+
+
     }
-
-
 }

@@ -44,9 +44,11 @@ public static class MauiProgram
 
 		// handlers
         builder.Services.AddSingleton<StartRecordingHandler>();
+		builder.Services.AddSingleton<GetRecordingOptionsHandler>();
 
-
+        // infrustructure
         builder.Services.AddSingleton<IRecordingRepository, RecordingRepository>();
+		builder.Services.AddSingleton<IMainPageRepository, MainPageRepository>();
 
         // UI
         builder.Services.AddSingleton<MP.MainPageViewModel>();

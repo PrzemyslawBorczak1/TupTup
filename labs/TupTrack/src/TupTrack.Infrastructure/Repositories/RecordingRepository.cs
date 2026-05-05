@@ -8,7 +8,7 @@ namespace TupTrack.Infrastructure.Repositories
 {
     public class RecordingRepository : IRecordingRepository
     {
-        DatabaseContext _databaseContext;
+        private readonly DatabaseContext _databaseContext;
 
         public RecordingRepository(DatabaseContext databaseContext)
         {

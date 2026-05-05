@@ -2,11 +2,9 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-
-using  TupTrack.Domain;
-using Domain = TupTrack.Domain;
-using TupTrack.UseCases.Handlers;
+using TupTrack.Domain;
 using TupTrack.UseCases.DTOs;
+using TupTrack.UseCases.Handlers;
 
 
 namespace TupTrack.UI.MainPage
@@ -14,6 +12,7 @@ namespace TupTrack.UI.MainPage
     public partial class MainPageViewModel : ObservableObject
     {
         private StartRecordingHandler _startRecordingHandler;
+        private GetRecordingOptionsHandler _getRecordingOptionsHandler;
 
         [ObservableProperty]
         private TupState tupState = TupState.Flat;
@@ -67,68 +66,27 @@ namespace TupTrack.UI.MainPage
 
 
 
-        public MainPageViewModel(StartRecordingHandler startRecordingHandler)
+        public MainPageViewModel(StartRecordingHandler startRecordingHandler, GetRecordingOptionsHandler getRecordingOptionsHandler)
         {
             _startRecordingHandler = startRecordingHandler;
+            _getRecordingOptionsHandler = getRecordingOptionsHandler;
         }
 
         public async Task LoadOptions()
         {
-            if (Rooms.Count == 0)
+            var options = await _getRecordingOptionsHandler.Handle();
+
+            foreach (var s in options.Rooms)
             {
-                List<string> newRooms = new()
-            {
-                "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room67",
-        };
-                foreach (var s in newRooms)
-                {
-                    Rooms.Add(s);
-                }
+                Rooms.Add(s);
             }
 
-            if (Groups.Count == 0)
+
+            foreach (var s in options.Groups)
             {
-                List<string> newGroups = new()
-                {
-                    "Gr1",
-                    "Gr2",
-                    "Gr3",
-                    "Gr4",
-                    "Gr5",
-                };
-                foreach (var s in newGroups)
-                {
-                    Groups.Add(s);
-                }
+                Groups.Add(s);
             }
+
 
             Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
@@ -137,8 +95,8 @@ namespace TupTrack.UI.MainPage
 
         [RelayCommand]
         public async Task StartRecording()
-            => await _startRecordingHandler.StartRecording(new StartRecordingDTO { FirstTupState = TupState, StartTime = DateTime.Now });
-        
+            => await _startRecordingHandler.Handle(new StartRecordingDTO { FirstTupState = TupState, StartTime = DateTime.Now });
+
 
 
     }
