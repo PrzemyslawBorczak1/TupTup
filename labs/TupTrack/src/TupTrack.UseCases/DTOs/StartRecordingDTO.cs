@@ -9,7 +9,7 @@ namespace TupTrack.UseCases.DTOs
         public DateTime StartTime { get; set; }
         public TupState FirstTupState { get; set; }
         public string? Room { get; set; } 
-        public SensorSpeed SensorSpeed { get; set; }
+        public SensorSpeed SensorSpeed { get; set; } = SensorSpeed.Fast;
 
     }
 }

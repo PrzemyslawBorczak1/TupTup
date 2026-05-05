@@ -55,7 +55,7 @@ namespace TupTrack.Infrastructure.Repositories
 
         }
 
-        public async Task MarkAsFailed(Guid recordingId, string failureReason)
+        public async Task MarkAsFailed(Guid recordingId, string? failureReason = null)
         {
             await _databaseContext.InitAsync();
             var recording = await _databaseContext.Connection.GetAsync<Tables.Recording>(recordingId);

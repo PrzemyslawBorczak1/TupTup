@@ -23,7 +23,6 @@ public class DatabaseContext
         if (_initialized)
             return;
 
-        await DropAllTablesAsync();
 
         await _connection.CreateTableAsync<Tables.Recording>();
         await _connection.CreateTableAsync<Tables.TupStateEntity>();

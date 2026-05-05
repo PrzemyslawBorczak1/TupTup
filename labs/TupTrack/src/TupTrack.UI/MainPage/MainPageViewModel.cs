@@ -95,7 +95,27 @@ namespace TupTrack.UI.MainPage
 
         [RelayCommand]
         public async Task StartRecording()
-            => await _startRecordingHandler.Handle(new StartRecordingDTO { FirstTupState = TupState, StartTime = DateTime.Now });
+        {
+            try
+            {
+
+                await _startRecordingHandler.Handle(new StartRecordingDTO
+                {
+                    FirstTupState = TupState,
+                    StartTime = DateTime.Now,
+                    Room = ChosenRoom,
+                    SensorSpeed = ChosenSpeedSensor,
+
+                });
+            }
+            catch (Exception ex)
+            {
+                await Application.Current!.MainPage!.DisplayAlertAsync(
+                    "Error",
+                    $"Error starting recording: {ex.Message}",
+                    "OK");
+            }
+        }
 
 
 

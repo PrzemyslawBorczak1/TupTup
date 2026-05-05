@@ -43,7 +43,7 @@ public class StartRecordingHandler // TODO  inital room    no room exception han
         }
         catch (Exception ex)
         {
-            // TODO handle sensor coordinator start failure, 
+            await _recordingRepository.MarkAsFailed(recording.Id, ex.Message);
         }
 
         return recording.Id;
