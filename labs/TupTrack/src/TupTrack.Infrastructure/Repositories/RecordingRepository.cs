@@ -25,7 +25,7 @@ namespace TupTrack.Infrastructure.Repositories
                 Id = recording.Id,
                 GroupType = recording.GroupType,
                 StartTime = recording.StartTime,
-                EndTime = recording.StartTime,
+                EndTime = recording.EndTime,
                 Note = recording.Note,
                 State = recording.State
             };
@@ -42,7 +42,8 @@ namespace TupTrack.Infrastructure.Repositories
                 Id = roomTimestamp.Id,
                 RoomName = roomTimestamp.RoomName,
                 RecordingId = roomTimestamp.RecordingId,
-                Description = roomTimestamp.Description
+                Timestamp = roomTimestamp.Timestamp,
+                Description = roomTimestamp.Description,
             };
 
 
@@ -69,6 +70,7 @@ namespace TupTrack.Infrastructure.Repositories
                 {
                     recording.Note = recording.Note + $"\nFailed: {failureReason}";
                 }
+                recording.State = RecordingState.Failed;
                 await _databaseContext.Connection.UpdateAsync(recording);
             }
         }
