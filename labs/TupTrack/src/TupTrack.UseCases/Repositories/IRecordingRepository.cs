@@ -1,12 +1,14 @@
-﻿using Entities = TupTrack.Domain.Entities;
+﻿using TupTrack.Domain.Entities;
 
 namespace TupTrack.UseCases.Repositories
 {
     public interface IRecordingRepository
     {
+        public Task AddInitialRecording(Recording recording, TupStateEntity tupStateEntity, RoomTimestamp roomTimestamp);
+        
 
-        public Task AddRecording(Entities.Recording recording);
+        public Task<Room> GetRoomAsync(string roomName);
 
-        public Task AddTupState(Entities.TupStateEntity tupStateEntity);
+
     }
 }

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TupTrack.Infrastructure.Tables
+namespace TupTrack.Domain.Entities
 {
     public class RoomTimestamp
     {
-        [SQLite.PrimaryKey]
         public Guid Id { get; set; }
 
         public string RoomName { get; set; }
@@ -14,5 +13,14 @@ namespace TupTrack.Infrastructure.Tables
         public DateTime Timestamp { get; set; }
         public string? Description { get; set; } = null;
 
+
+        public RoomTimestamp(string roomName, Guid recordingId, DateTime timestamp, string? description = null)
+        {
+            Id = Guid.NewGuid();
+            RoomName = roomName;
+            RecordingId = recordingId;
+            Timestamp = timestamp;
+            Description = description;
+        }
     }
 }

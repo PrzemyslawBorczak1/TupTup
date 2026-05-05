@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using SQLite;
+using TupTrack.Domain;
 
 namespace TupTrack.Infrastructure.Tables;
 
@@ -13,7 +14,8 @@ public class Recording
     public Guid? GroupType { get;  set; }
     public DateTime StartTime { get;  set; }
     public DateTime? EndTime { get;  set; }
-    public string? Note { get;  set; } = null;
+    public string? Note { get;  set; } 
+    public RecordingState State { get;  set; }
 
 }
 

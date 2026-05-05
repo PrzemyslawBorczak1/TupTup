@@ -28,7 +28,7 @@ public class DatabaseContext
         await _connection.CreateTableAsync<Tables.RecordingGroup>();
         await _connection.CreateTableAsync<Tables.SensorType>();
         await _connection.CreateTableAsync<Tables.SensorReading>();
-        await _connection.CreateTableAsync<Tables.Rooms>();
+        await _connection.CreateTableAsync<Tables.Room>();
         await _connection.CreateTableAsync<Tables.RoomTimestamp>();
 
         _initialized = true;

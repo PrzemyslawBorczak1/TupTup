@@ -14,12 +14,12 @@ namespace TupTrack.Domain.Entities
         public string? Description { get; private set; } = null;
 
 
-        public static TupStateEntity Create(Guid recordingId, TupState state, DateTime fromTimeStamp) => new TupStateEntity
+        public TupStateEntity(Guid recordingId, TupState state, DateTime fromTimeStamp)
         {
-            Id = Guid.NewGuid(),
-            RecordingId = recordingId,
-            State = state,
-            FromTimestamp = fromTimeStamp
-        };
+            Id = Guid.NewGuid();
+            RecordingId = recordingId;
+            State = state;
+            FromTimestamp = fromTimeStamp;
+        }
     }
 }

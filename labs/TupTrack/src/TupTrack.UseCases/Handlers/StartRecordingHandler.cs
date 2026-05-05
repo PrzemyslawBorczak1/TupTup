@@ -1,34 +1,58 @@
-﻿using TupTrack.UseCases.SensorCoordinator;
-
-using TupTrack.Domain.Entities;
+﻿using TupTrack.Domain.Entities;
 using TupTrack.UseCases.DTOs;
 using TupTrack.UseCases.Repositories;
+using TupTrack.UseCases.SensorCoordinator;
 
 
 namespace TupTrack.UseCases.Handlers;
 
-public class StartRecordingHandler // TODO  inital room   
+public class StartRecordingHandler // TODO  inital room    no room exception handling
 {
     ISensorCoordinator _sensorCoordinator;
-    IRecordingRepository _appDatabase;
+    IRecordingRepository _recordingRepository;
     public StartRecordingHandler(ISensorCoordinator sensorCoordinator, IRecordingRepository recordingRepository)
     {
         _sensorCoordinator = sensorCoordinator;
-        _appDatabase = recordingRepository;
+        _recordingRepository = recordingRepository;
     }
 
-    public async Task<Guid> StartRecording(StartRecordingDTO startRecordingDTO) {
-        var recording = Recording.Create(startRecordingDTO.StartTime);
-        var firstTupStateEntity = TupStateEntity.Create(recording.Id, startRecordingDTO.FirstTupState, startRecordingDTO.StartTime);
+    public async Task<Guid> StartRecording(StartRecordingDTO startRecordingDTO)
+    {
+
+        try
+        {
+            if (string.IsNullOrEmpty(startRecordingDTO.Room))
+            {
+                //throw new ArgumentException("Room name cannot be null or empty.");
+            }
+
+            //var initialRoom = await _recordingRepository.GetRoomAsync(startRecordingDTO.Room);
 
 
-        await _appDatabase.AddRecording(recording);
-        await _appDatabase.AddTupState(firstTupStateEntity);
 
-        _sensorCoordinator.SetSpeed(startRecordingDTO.SensorSpeed);
-        _sensorCoordinator.Start();
+            var recording = new Recording(startRecordingDTO.StartTime);
+            var firstTupStateEntity = new TupStateEntity(recording.Id, startRecordingDTO.FirstTupState, startRecordingDTO.StartTime);
 
-        return recording.Id;
+            var roomTimestamp = new RoomTimestamp(initialRoom.Name, recording.Id, startRecordingDTO.StartTime);
+
+            await _recordingRepository.AddInitialRecording(recording, firstTupStateEntity, roomTimestamp);
+
+            try
+            {
+                _sensorCoordinator.SetSpeed(startRecordingDTO.SensorSpeed);
+                _sensorCoordinator.Start();
+            }
+            catch (Exception ex)
+            {
+                // TODO handle sensor coordinator start failure, 
+            }
+
+            return recording.Id;
+        }
+        catch (Exception ex) // TODO dlete later
+        {
+            return Guid.Empty;
+        }
     }
 
 

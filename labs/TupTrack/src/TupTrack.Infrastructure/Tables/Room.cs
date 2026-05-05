@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TupTrack.Infrastructure.Tables
 {
-    public class Rooms
+    public class Room
     {
         [SQLite.PrimaryKey]
         public string Name { get; set; }

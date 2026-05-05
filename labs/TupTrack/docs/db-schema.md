@@ -16,6 +16,7 @@ erDiagram
         datetime started_at
         datetime ended_at "nullable"
         string note "nullable"
+        recording_state state
     }
 
     SENSOR_READING {
@@ -48,7 +49,7 @@ erDiagram
 
     ROOM_TIMESTAMP  {
         int id PK
-        string room_id FK
+        string room_name FK
         int recording_id FK
         datetime from_timestamp
         string description "nullable"

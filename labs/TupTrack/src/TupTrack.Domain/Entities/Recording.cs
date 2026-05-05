@@ -11,15 +11,15 @@ public class Recording
     public DateTime StartTime { get; private set; }
     public DateTime? EndTime { get; private set; }
     public string? Note { get; private set; } = null;
+    public RecordingState State { get; private set; } = RecordingState.Ongoing;
 
 
 
-
-    public static Recording Create(DateTime startTime) => new Recording()
+    public Recording(DateTime startTime)
     {
-        Id = Guid.NewGuid(),
-        StartTime = startTime
-    };
+        Id = Guid.NewGuid();
+        StartTime = startTime;
+    }
 
 }
 
