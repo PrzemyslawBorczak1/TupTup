@@ -51,6 +51,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IMainPageRepository, MainPageRepository>();
 
         // UI
+        builder.Services.AddSingleton<TupTrack.UI.StatisticsPage.StatisticsPageViewModel>();
+        builder.Services.AddTransient<TupTrack.UI.StatisticsPage.StatisticsPage>();
+
         builder.Services.AddSingleton<MP.MainPageViewModel>();
         builder.Services.AddTransient<MP.MainPage>();
 
