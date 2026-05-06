@@ -23,7 +23,7 @@ namespace TupTrack.Infrastructure.Repositories
             Tables.Recording rec = new()
             {
                 Id = recording.Id,
-                GroupType = recording.GroupType,
+                GroupName = recording.GroupName,
                 StartTime = recording.StartTime,
                 EndTime = recording.EndTime,
                 Note = recording.Note,
