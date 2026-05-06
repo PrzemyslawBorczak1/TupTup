@@ -2,42 +2,28 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TupTrack.Domain;
 using TupTrack.UseCases.DTOs;
+using TupTrack.UseCases.Handlers;
 
 namespace TupTrack.UI.StatisticsPage
 {
     public partial class StatisticsPageViewModel : ObservableObject
     {
+        GetRecordingsSummaryHandler _handler;
         public ObservableCollection<RecordingSummaryDTO> Recordings { get; } = new();
 
-        public StatisticsPageViewModel()
+        public StatisticsPageViewModel(GetRecordingsSummaryHandler handler)
         {
-            // Seed data for now
-            Recordings.Add(new RecordingSummaryDTO
-            {
-                Id = Guid.NewGuid(),
-                StartTime = DateTime.Now.AddMinutes(-25),
-                EndTime = DateTime.Now.AddMinutes(-5),
-                State = RecordingState.Completed,
-                GroupName = "Living room"
-            });
+            _handler = handler;
+        }
 
-            Recordings.Add(new RecordingSummaryDTO
+        public async void LoadSummaries()
+        {
+            var dbRecordings = await _handler.Handle(); 
+            foreach(var r in dbRecordings)
             {
-                Id = Guid.NewGuid(),
-                StartTime = DateTime.Now.AddHours(-3),
-                EndTime = null,
-                State = RecordingState.Ongoing,
-                GroupName = "Bedroom"
-            });
-
-            Recordings.Add(new RecordingSummaryDTO
-            {
-                Id = Guid.NewGuid(),
-                StartTime = DateTime.Now.AddDays(-1),
-                EndTime = DateTime.Now.AddDays(-1).AddMinutes(18),
-                State = RecordingState.Failed,
-                GroupName = "Kitchen"
-            });
+                Recordings.Add(r);
+            }
+           
         }
     }
 }

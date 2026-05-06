@@ -7,4 +7,11 @@ public partial class StatisticsPage : ContentPage
         InitializeComponent();
         BindingContext = vm;
     }
+
+
+    private async void OnAppearance(object? sender, EventArgs e)
+    {
+        if (BindingContext is StatisticsPageViewModel vm)
+            vm.LoadSummaries();
+    }
 }
