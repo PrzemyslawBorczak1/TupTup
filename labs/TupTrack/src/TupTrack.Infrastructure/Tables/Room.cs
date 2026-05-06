@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace TupTrack.Infrastructure.Tables
 {
@@ -9,5 +7,13 @@ namespace TupTrack.Infrastructure.Tables
         [SQLite.PrimaryKey]
         public string Name { get; set; }
         public string? Description { get; set; } = null;
+
+        public Room() { }
+
+        public Room(Domain.Entities.Room room)
+        {
+            Name = room.Name;
+            Description = room.Description;
+        }
     }
 }

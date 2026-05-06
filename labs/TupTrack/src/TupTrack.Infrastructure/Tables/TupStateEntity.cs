@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TupTrack.Domain;
+using Domain = TupTrack.Domain.Entities;
 
 namespace TupTrack.Infrastructure.Tables
 {
@@ -14,6 +15,15 @@ namespace TupTrack.Infrastructure.Tables
         public DateTime FromTimestamp { get;  set; }
         public string? Description { get;  set; } = null;
 
+        public TupStateEntity() { }
+        public TupStateEntity(Domain.Entities.TupStateEntity tupStateEntity)
+        {
+            Id = tupStateEntity.Id;
+            RecordingId = tupStateEntity.RecordingId;
+            State = tupStateEntity.State;
+            FromTimestamp = tupStateEntity.FromTimestamp;
+            Description = tupStateEntity.Description;
+        }
 
     }
 }

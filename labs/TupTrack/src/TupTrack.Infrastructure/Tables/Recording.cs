@@ -1,7 +1,5 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using TupTrack.Domain;
 
 namespace TupTrack.Infrastructure.Tables;
@@ -17,5 +15,17 @@ public class Recording
     public string? Note { get;  set; } 
     public RecordingState State { get;  set; }
 
-}
+    public Recording() { }
+    public Recording(Domain.Entities.Recording recording)
+    {
+        Id = recording.Id;
+        GroupType = recording.GroupType;
+        StartTime = recording.StartTime;
+        EndTime = recording.EndTime;
+        Note = recording.Note;
+        State = recording.State;
+    }
 
+
+
+}

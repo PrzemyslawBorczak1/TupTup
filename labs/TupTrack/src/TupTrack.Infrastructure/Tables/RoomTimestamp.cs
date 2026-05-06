@@ -14,5 +14,16 @@ namespace TupTrack.Infrastructure.Tables
         public DateTime Timestamp { get; set; }
         public string? Description { get; set; } = null;
 
+        public RoomTimestamp() { }
+
+        public RoomTimestamp(Domain.Entities.RoomTimestamp roomTimestamp)
+        {
+            Id = roomTimestamp.Id;
+            RoomName = roomTimestamp.RoomName;
+            RecordingId = roomTimestamp.RecordingId;
+            Timestamp = roomTimestamp.Timestamp;
+            Description = roomTimestamp.Description;
+        }
+
     }
 }
