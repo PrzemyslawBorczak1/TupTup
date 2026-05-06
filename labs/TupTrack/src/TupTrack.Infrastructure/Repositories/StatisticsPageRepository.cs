@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-using TupTrack.UseCases.DTOs;
 using TupTrack.Infrastructure.Tables;
+using TupTrack.UseCases.DTOs;
+using TupTrack.UseCases.Repositories;
 
 namespace TupTrack.Infrastructure.Repositories
 {
-    public class StatisticPageRepository
+    public class StatisticsPageRepository : IStatisticsPageRepository
     {
         DatabaseContext _databaseContext;
 
-        public StatisticPageRepository(DatabaseContext databaseContext)
+        public StatisticsPageRepository(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }

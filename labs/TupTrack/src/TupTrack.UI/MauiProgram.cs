@@ -45,10 +45,12 @@ public static class MauiProgram
 		// handlers
         builder.Services.AddSingleton<StartRecordingHandler>();
 		builder.Services.AddSingleton<GetRecordingOptionsHandler>();
+		builder.Services.AddSingleton<GetRecordingsSummaryHandler>();
 
         // infrustructure
         builder.Services.AddSingleton<IRecordingRepository, RecordingRepository>();
 		builder.Services.AddSingleton<IMainPageRepository, MainPageRepository>();
+		builder.Services.AddSingleton<IStatisticsPageRepository, StatisticsPageRepository>(); 
 
         // UI
         builder.Services.AddSingleton<TupTrack.UI.StatisticsPage.StatisticsPageViewModel>();
