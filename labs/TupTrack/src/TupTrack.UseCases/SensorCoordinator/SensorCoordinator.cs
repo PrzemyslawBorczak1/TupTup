@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TupTrack.Domain;
 
 namespace TupTrack.UseCases.SensorCoordinator
 {
@@ -32,6 +33,14 @@ namespace TupTrack.UseCases.SensorCoordinator
             foreach(var service in _services)
             {
                 service.Dispose();
+            }
+        }
+
+        public void SetSpeed(SensorSpeed speed)
+        {
+            foreach(var service in _services)
+            {
+                service.SetSpeed(speed);
             }
         }
     }

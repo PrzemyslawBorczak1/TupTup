@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TupTrack.Domain\TupTrack.Domain.csproj" />
-    <ProjectReference Include="..\TupTrack.Infrastructure\TupTrack.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

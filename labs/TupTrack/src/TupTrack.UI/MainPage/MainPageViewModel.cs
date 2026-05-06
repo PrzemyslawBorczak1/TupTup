@@ -3,13 +3,16 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using TupTrack.Domain;
-using TupTrack.Infrastructure;
+using TupTrack.UseCases.DTOs;
+using TupTrack.UseCases.Handlers;
+
 
 namespace TupTrack.UI.MainPage
 {
     public partial class MainPageViewModel : ObservableObject
     {
-        private AppDatabase _appDb;
+        private StartRecordingHandler _startRecordingHandler;
+        private GetRecordingOptionsHandler _getRecordingOptionsHandler;
 
         [ObservableProperty]
         private TupState tupState = TupState.Flat;
@@ -18,7 +21,7 @@ namespace TupTrack.UI.MainPage
         private string chosenRoom = "";
 
         [ObservableProperty]
-        private SensorSpeed chosenSpeedSensor = SensorSpeed.Fastest;
+        private Domain.SensorSpeed chosenSpeedSensor = Domain.SensorSpeed.Fast;
 
         [ObservableProperty]
         private string chosenGroup = "";
@@ -29,12 +32,12 @@ namespace TupTrack.UI.MainPage
 
 
         public ObservableCollection<string> Rooms { get; private set; } = new ObservableCollection<string>();
-        public ObservableCollection<SensorSpeed> SpeedSensor { get; } = new ObservableCollection<SensorSpeed>
+        public ObservableCollection<Domain.SensorSpeed> SpeedSensor { get; } = new ObservableCollection<Domain.SensorSpeed>
         {
-            SensorSpeed.Default,
-            SensorSpeed.UI,
-            SensorSpeed.Game,
-            SensorSpeed.Fastest,
+            Domain.SensorSpeed.Default,
+            Domain.SensorSpeed.Slow,
+            Domain.SensorSpeed.Medium,
+            Domain.SensorSpeed.Fast,
         };
         public ObservableCollection<string> Groups { get; private set; } = new ObservableCollection<string>();
 
@@ -51,7 +54,7 @@ namespace TupTrack.UI.MainPage
             Debug.WriteLine(chosenRoom);
         }
 
-        partial void OnChosenSpeedSensorChanged(SensorSpeed value)
+        partial void OnChosenSpeedSensorChanged(Domain.SensorSpeed value)
         {
             Debug.WriteLine(ChosenSpeedSensor);
         }
@@ -63,71 +66,58 @@ namespace TupTrack.UI.MainPage
 
 
 
-        public MainPageViewModel(AppDatabase appDatabase)
+        public MainPageViewModel(StartRecordingHandler startRecordingHandler, GetRecordingOptionsHandler getRecordingOptionsHandler)
         {
-            _appDb = appDatabase;
+            _startRecordingHandler = startRecordingHandler;
+            _getRecordingOptionsHandler = getRecordingOptionsHandler;
         }
 
         public async Task LoadOptions()
         {
-            if (Rooms.Count == 0)
+            var options = await _getRecordingOptionsHandler.Handle();
+
+            foreach (var s in options.Rooms)
             {
-                List<string> newRooms = new()
-            {
-                "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room1",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room2",
-            "Room3",
-            "Room4",
-            "Room67",
-        };
-                foreach (var s in newRooms)
-                {
-                    Rooms.Add(s);
-                }
+                Rooms.Add(s);
             }
 
-            if (Groups.Count == 0)
+
+            foreach (var s in options.Groups)
             {
-                List<string> newGroups = new()
-                {
-                    "Gr1",
-                    "Gr2",
-                    "Gr3",
-                    "Gr4",
-                    "Gr5",
-                };
-                foreach (var s in newGroups)
-                {
-                    Groups.Add(s);
-                }
+                Groups.Add(s);
             }
+
 
             Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
+
+
+
+        [RelayCommand]
+        public async Task StartRecording()
+        {
+            try
+            {
+
+                await _startRecordingHandler.Handle(new StartRecordingDTO
+                {
+                    FirstTupState = TupState,
+                    StartTime = DateTime.Now,
+                    Room = ChosenRoom,
+                    SensorSpeed = ChosenSpeedSensor,
+
+                });
+            }
+            catch (Exception ex)
+            {
+                await Application.Current!.MainPage!.DisplayAlertAsync(
+                    "Error",
+                    $"Error starting recording: {ex.Message}",
+                    "OK");
+            }
+        }
+
+
 
     }
 }

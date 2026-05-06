@@ -3,50 +3,58 @@
 
 ```mermaid
 erDiagram
-    RECORDING ||--o{ TIMESTAMP_LABEL : has
+    RECORDING ||--o{ TUP_STATE : has
+    RECORDING ||--o{ ROOM_TIMESTAMP : has
+    ROOMS ||--o{ ROOM_TIMESTAMP : has
     RECORDING }o--|| RECORDING_GROUP : is
-    LABEL_TYPE ||--o{ TIMESTAMP_LABEL : classifies
     RECORDING ||--|{ SENSOR_READING : has
     SENSOR_READING }o--|| SENSOR_TYPE : is
 
     RECORDING {
         int id PK
-        int group_type FK
+        int group_type FK "nullable"
         datetime started_at
-        datetime ended_at
-        int duration_ms
-        boolean is_local
+        datetime ended_at "nullable"
         string note "nullable"
+        recording_state state
     }
 
     SENSOR_READING {
-        bigint id PK
-        bigint recording_id FK
-        bigint sensor_type FK
+        int id PK
+        int recording_id FK
+        int sensor_type FK
         datetime timestamp
         float val
     }
 
     SENSOR_TYPE {
-        bigint id PK
+        int id PK
         string name
         int dim
         string json_spec "nullable"
     }
 
-    LABEL_TYPE {
+    TUP_STATE  {
         int id PK
-        string name
-        string description 
-    }
-    TIMESTAMP_LABEL {
-        bigint id PK
         int recording_id FK
-        int label_type_id FK
-        datetime timestamp
+        tup_state state
+        datetime from_timestamp
         string description "nullable"
     }
 
+    ROOMS{
+        string name PK
+        string description "nullable"
+    }
+
+    ROOM_TIMESTAMP  {
+        int id PK
+        string room_name FK
+        int recording_id FK
+        datetime from_timestamp
+        string description "nullable"
+    }
+   
     RECORDING_GROUP{
         string name PK
         string description
@@ -56,5 +64,5 @@ erDiagram
 ## Notes
 - Wi-Fi, Bluetooth, and other named sensors will be stored as attributes in `SensorType`.
   - TODO: add these attributes.
-- It is possible that some additional fields related to the upload state of a recording will be required.
+- If there will be decision to virtuali synchornise additional fields will be needed
 

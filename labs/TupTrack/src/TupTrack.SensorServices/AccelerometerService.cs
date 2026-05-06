@@ -1,4 +1,5 @@
 ﻿using TupTrack.UseCases.SensorCoordinator;
+using Domain = TupTrack.Domain;
 
 namespace TupTrack.SensorServices
 {
@@ -7,24 +8,22 @@ namespace TupTrack.SensorServices
 
         private SensorSpeed _sensorSpeed = SensorSpeed.Fastest;
         private bool isRecording = false;
-        public SensorSpeed SensorSpeed
+      
+        public void SetSpeed(Domain.SensorSpeed speed)
         {
-            get => _sensorSpeed;
-            set
+            var value = Converters.ConvertDomainToServiceSpeed(speed);
+
+            if (_sensorSpeed == value)
+                return;
+
+            _sensorSpeed = value;
+            if (Accelerometer.IsMonitoring)
             {
-
-                if (_sensorSpeed == value)
-                    return;
-
-                _sensorSpeed = value;
-                if (Accelerometer.IsMonitoring)
-                {
-                    Accelerometer.Stop();
-                    Accelerometer.Start(_sensorSpeed);
-                }
+                Accelerometer.Stop();
+                Accelerometer.Start(_sensorSpeed);
             }
-
         }
+
         public AccelerometerService() : base() { }
         public bool IsSupported() => Accelerometer.IsSupported;
 
