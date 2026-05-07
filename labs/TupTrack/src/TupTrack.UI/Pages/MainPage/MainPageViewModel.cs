@@ -7,7 +7,7 @@ using TupTrack.UseCases.DTOs;
 using TupTrack.UseCases.Handlers;
 
 
-namespace TupTrack.UI.MainPage
+namespace TupTrack.UI.Pages.MainPage
 {
     public partial class MainPageViewModel : ObservableObject
     {

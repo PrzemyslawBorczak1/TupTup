@@ -4,7 +4,7 @@ using TupTrack.Domain;
 using TupTrack.UseCases.DTOs;
 using TupTrack.UseCases.Handlers;
 
-namespace TupTrack.UI.StatisticsPage
+namespace TupTrack.UI.Pages.StatisticsPage
 {
     public partial class StatisticsPageViewModel : ObservableObject
     {

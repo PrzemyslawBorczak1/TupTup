@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TupTrack.UI.MainPage;
+namespace TupTrack.UI.Pages.MainPage;
 /// <summary>
 /// It binds to Height and lets to add segments with different values and colors. Each segment's width is proportional to its value compared to the total value of all segments. It also has a method to get the last added segment, which can be used for updating the most recent segment's value or color
 /// </summary>
