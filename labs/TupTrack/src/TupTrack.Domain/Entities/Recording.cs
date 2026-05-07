@@ -15,10 +15,11 @@ public class Recording
 
 
 
-    public Recording(DateTime startTime)
+    public Recording(DateTime startTime, string? groupName)
     {
         Id = Guid.NewGuid();
         StartTime = startTime;
+        GroupName = groupName;
     }
 
 }

@@ -101,9 +101,10 @@ namespace TupTrack.UI.MainPage
                 await _startRecordingHandler.Handle(new StartRecordingDTO
                 {
                     FirstTupState = TupState,
-                    StartTime = DateTime.Now.ToLocalTime(),
+                    StartTime = DateTime.Now,
                     Room = ChosenRoom,
                     SensorSpeed = ChosenSpeedSensor,
+                    GroupName = ChosenGroup,
 
                 });
             }

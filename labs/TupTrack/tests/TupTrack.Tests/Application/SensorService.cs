@@ -167,8 +167,8 @@ namespace TupTrack.Tests.Application
 
         private static void WaitForClockTick()
         {
-            var start = DateTime.Now.ToLocalTime();
-            while (DateTime.Now.ToLocalTime() == start)
+            var start = DateTime.Now;
+            while (DateTime.Now == start)
             {
             }
         }

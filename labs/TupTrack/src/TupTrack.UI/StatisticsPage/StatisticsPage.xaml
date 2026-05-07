@@ -16,12 +16,15 @@
 
                     <VerticalStackLayout Spacing="6">
                         <Label
-                            Text="{Binding GroupName}"
+                            Text="{Binding GroupName, TargetNullValue='(no group)'}"
                             FontSize="20"
                             FontAttributes="Bold" />
 
                         <Label
                             Text="{Binding StartTime, StringFormat='Start: {0:dd.MM.yyyy HH:mm}'}" />
+
+                        <Label
+                            Text="{Binding EndTime, StringFormat='End: {0:dd.MM.yyyy HH:mm}', TargetNullValue='End: -'}" />
 
                         <Label
                             Text="{Binding State, StringFormat='State: {0}'}" />
