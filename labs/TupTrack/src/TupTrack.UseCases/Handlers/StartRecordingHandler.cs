@@ -16,6 +16,7 @@ public class StartRecordingHandler // TODO  inital room    no room exception han
         _recordingRepository = recordingRepository;
     }
 
+    // TODO data z lepsza strefa czasowa (teraz jest jakies 2h do tylu)
     public async Task<Guid> Handle(StartRecordingDTO startRecordingDTO)
     {
 

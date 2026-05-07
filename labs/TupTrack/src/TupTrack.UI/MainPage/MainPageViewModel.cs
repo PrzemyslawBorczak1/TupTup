@@ -88,7 +88,6 @@ namespace TupTrack.UI.MainPage
             }
 
 
-            Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
 
 
@@ -102,7 +101,7 @@ namespace TupTrack.UI.MainPage
                 await _startRecordingHandler.Handle(new StartRecordingDTO
                 {
                     FirstTupState = TupState,
-                    StartTime = DateTime.Now,
+                    StartTime = DateTime.Now.ToLocalTime(),
                     Room = ChosenRoom,
                     SensorSpeed = ChosenSpeedSensor,
 

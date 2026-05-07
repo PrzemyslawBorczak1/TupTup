@@ -62,4 +62,5 @@ public static class MauiProgram
 
         return builder.Build();
 	}
+	// TODO oblsuga beldow w ui wynikaja z handlerow
 }
