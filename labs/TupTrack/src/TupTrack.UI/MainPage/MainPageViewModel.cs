@@ -88,7 +88,6 @@ namespace TupTrack.UI.MainPage
             }
 
 
-            Debug.WriteLine("\n\n\n\n\n\nOptions loaded\n\n\n\n\n\n\n");
         }
 
 
@@ -105,6 +104,7 @@ namespace TupTrack.UI.MainPage
                     StartTime = DateTime.Now,
                     Room = ChosenRoom,
                     SensorSpeed = ChosenSpeedSensor,
+                    GroupName = ChosenGroup,
 
                 });
             }

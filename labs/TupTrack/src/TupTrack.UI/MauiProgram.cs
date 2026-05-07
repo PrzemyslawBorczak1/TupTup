@@ -45,16 +45,22 @@ public static class MauiProgram
 		// handlers
         builder.Services.AddSingleton<StartRecordingHandler>();
 		builder.Services.AddSingleton<GetRecordingOptionsHandler>();
+		builder.Services.AddSingleton<GetRecordingsSummaryHandler>();
 
         // infrustructure
         builder.Services.AddSingleton<IRecordingRepository, RecordingRepository>();
 		builder.Services.AddSingleton<IMainPageRepository, MainPageRepository>();
+		builder.Services.AddSingleton<IStatisticsPageRepository, StatisticsPageRepository>(); 
 
         // UI
+        builder.Services.AddSingleton<TupTrack.UI.StatisticsPage.StatisticsPageViewModel>();
+        builder.Services.AddTransient<TupTrack.UI.StatisticsPage.StatisticsPage>();
+
         builder.Services.AddSingleton<MP.MainPageViewModel>();
         builder.Services.AddTransient<MP.MainPage>();
 
 
         return builder.Build();
 	}
+	// TODO oblsuga beldow w ui wynikaja z handlerow
 }

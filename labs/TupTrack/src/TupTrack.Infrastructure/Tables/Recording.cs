@@ -9,7 +9,7 @@ public class Recording
 {
     [PrimaryKey]
     public Guid Id { get;  set; }
-    public Guid? GroupType { get;  set; }
+    public string? GroupName { get;  set; }
     public DateTime StartTime { get;  set; }
     public DateTime? EndTime { get;  set; }
     public string? Note { get;  set; } 
@@ -19,7 +19,7 @@ public class Recording
     public Recording(Domain.Entities.Recording recording)
     {
         Id = recording.Id;
-        GroupType = recording.GroupType;
+        GroupName = recording.GroupName;
         StartTime = recording.StartTime;
         EndTime = recording.EndTime;
         Note = recording.Note;

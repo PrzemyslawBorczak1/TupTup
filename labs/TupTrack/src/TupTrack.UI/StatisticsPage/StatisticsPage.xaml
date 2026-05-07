@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TupTrack.UI.StatisticsPage.StatisticsPage"
+              Appearing="OnAppearance"
+             
+             Title="StatisticsPage">
+    
+    <CollectionView ItemsSource="{Binding Recordings}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border
+                    Margin="12,6"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 16">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="{Binding GroupName, TargetNullValue='(no group)'}"
+                            FontSize="20"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="{Binding StartTime, StringFormat='Start: {0:dd.MM.yyyy HH:mm}'}" />
+
+                        <Label
+                            Text="{Binding EndTime, StringFormat='End: {0:dd.MM.yyyy HH:mm}', TargetNullValue='End: -'}" />
+
+                        <Label
+                            Text="{Binding State, StringFormat='State: {0}'}" />
+                    </VerticalStackLayout>
+
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

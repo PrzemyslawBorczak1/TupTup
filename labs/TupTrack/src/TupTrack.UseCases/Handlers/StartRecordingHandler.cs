@@ -6,7 +6,7 @@ using TupTrack.UseCases.SensorCoordinator;
 
 namespace TupTrack.UseCases.Handlers;
 
-public class StartRecordingHandler // TODO  inital room    no room exception handling
+public class StartRecordingHandler 
 {
     ISensorCoordinator _sensorCoordinator;
     IRecordingRepository _recordingRepository;
@@ -29,7 +29,7 @@ public class StartRecordingHandler // TODO  inital room    no room exception han
 
 
 
-        var recording = new Recording(startRecordingDTO.StartTime);
+        var recording = new Recording(startRecordingDTO.StartTime, startRecordingDTO.GroupName);
         var firstTupStateEntity = new TupStateEntity(recording.Id, startRecordingDTO.FirstTupState, startRecordingDTO.StartTime);
 
         var roomTimestamp = new RoomTimestamp(initialRoom.Name, recording.Id, startRecordingDTO.StartTime);

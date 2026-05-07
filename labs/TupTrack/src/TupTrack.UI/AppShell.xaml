@@ -3,12 +3,22 @@
     x:Class="TupTrack.UI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TupTrack.UI.MainPage"
+    xmlns:mainPage="clr-namespace:TupTrack.UI.MainPage"
+    xmlns:statistics="clr-namespace:TupTrack.UI.StatisticsPage"
     Title="TupTrack.UI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Home" >
+            <ShellContent
+            ContentTemplate="{DataTemplate mainPage:MainPage}"
+            Route="MainPage" />
+        </Tab>
+
+        <Tab Title="Statistics">
+            <ShellContent
+            ContentTemplate="{DataTemplate statistics:StatisticsPage}"
+            Route="StatisticsPage" />
+        </Tab>
+    </TabBar>
 
 </Shell>
