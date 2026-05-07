@@ -14,10 +14,10 @@
             Route="MainPage" />
         </Tab>
 
-        <Tab Title="Staistics">
+        <Tab Title="Statistics">
             <ShellContent
             ContentTemplate="{DataTemplate statistics:StatisticsPage}"
-            Route="SettingsPage" />
+            Route="StatisticsPage" />
         </Tab>
     </TabBar>
 
