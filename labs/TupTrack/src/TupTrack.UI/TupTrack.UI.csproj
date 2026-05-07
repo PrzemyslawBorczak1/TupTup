@@ -78,24 +78,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="MainPage\EventButtonsGrid.xaml.cs">
+	  <Compile Update="Pages\MainPage\EventButtonsGrid.xaml.cs">
 	    <DependentUpon>EventButtonsGrid.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MainPage\EventButtonsGrid.xaml">
+	  <MauiXaml Update="Pages\MainPage\EventButtonsGrid.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MainPage\LabelsBar.xaml">
+	  <MauiXaml Update="Pages\MainPage\LabelsBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MainPage\MetaDataButtons.xaml">
+	  <MauiXaml Update="Pages\MainPage\MetaDataButtons.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="StatisticsPage\StatisticsPage.xaml">
+	  <MauiXaml Update="Pages\StatisticsPage\StatisticsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Pages\RecordingDetailsPage\" />
 	</ItemGroup>
 
 </Project>

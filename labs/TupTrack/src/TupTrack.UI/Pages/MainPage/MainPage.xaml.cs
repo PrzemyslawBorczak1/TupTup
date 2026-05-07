@@ -3,7 +3,7 @@ using TupTrack.UseCases.Handlers;
 using TupTrack.UseCases.DTOs;
 using TupTrack.UI;
 
-namespace TupTrack.UI.MainPage;
+namespace TupTrack.UI.Pages.MainPage;
 
 public partial class MainPage : ContentPage
 {

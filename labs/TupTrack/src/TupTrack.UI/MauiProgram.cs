@@ -5,7 +5,7 @@ using TupTrack.UseCases;
 using TupTrack.UseCases.SensorCoordinator;
 using UC = TupTrack.UseCases;
 using TupTrack.UseCases.Handlers;
-using MP = TupTrack.UI.MainPage;
+using MP = TupTrack.UI.Pages.MainPage;
 using TupTrack.UseCases.Repositories;
 using TupTrack.Infrastructure.Repositories;
 
@@ -53,8 +53,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IStatisticsPageRepository, StatisticsPageRepository>(); 
 
         // UI
-        builder.Services.AddSingleton<TupTrack.UI.StatisticsPage.StatisticsPageViewModel>();
-        builder.Services.AddTransient<TupTrack.UI.StatisticsPage.StatisticsPage>();
+        builder.Services.AddSingleton<TupTrack.UI.Pages.StatisticsPage.StatisticsPageViewModel>();
+        builder.Services.AddTransient<TupTrack.UI.Pages.StatisticsPage.StatisticsPage>();
 
         builder.Services.AddSingleton<MP.MainPageViewModel>();
         builder.Services.AddTransient<MP.MainPage>();

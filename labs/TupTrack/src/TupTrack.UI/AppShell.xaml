@@ -3,8 +3,8 @@
     x:Class="TupTrack.UI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mainPage="clr-namespace:TupTrack.UI.MainPage"
-    xmlns:statistics="clr-namespace:TupTrack.UI.StatisticsPage"
+    xmlns:mainPage="clr-namespace:TupTrack.UI.Pages.MainPage"
+    xmlns:statistics="clr-namespace:TupTrack.UI.Pages.StatisticsPage"
     Title="TupTrack.UI">
 
     <TabBar>

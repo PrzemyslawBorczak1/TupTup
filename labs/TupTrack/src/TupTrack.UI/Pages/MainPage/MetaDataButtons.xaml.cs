@@ -1,4 +1,4 @@
-namespace TupTrack.UI.MainPage;
+namespace TupTrack.UI.Pages.MainPage;
 
 public partial class MetaDataButtons : ContentView
 {

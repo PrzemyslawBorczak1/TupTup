@@ -1,4 +1,4 @@
-namespace TupTrack.UI.StatisticsPage;
+namespace TupTrack.UI.Pages.StatisticsPage;
 
 public partial class StatisticsPage : ContentPage
 {
